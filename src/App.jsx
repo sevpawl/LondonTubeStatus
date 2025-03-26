@@ -1,8 +1,13 @@
 import { useState } from 'react';
 import './global.css';
+import { Layout } from './components/RootContainer';
 
 function App() {
-  return <></>;
+  return (
+    <div>
+      <Layout />
+    </div>
+  );
 }
 
 export default App;
