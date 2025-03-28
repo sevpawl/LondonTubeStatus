@@ -1,4 +1,4 @@
-import { Header, Card, LineStatusTile } from '../RootContainer';
+import { Header, Card, LineStatusTile, StatsCard, AlertsCard, ChartCard } from '../RootContainer';
 import '../../global.css';
 
 const Layout = () => {
@@ -6,12 +6,18 @@ const Layout = () => {
     <div className="flex flex-col items-center">
       <Header />
       <div className="flex flex-row gap-18 mb-12">
-        <Card />
-        <Card />
-        <Card />
+        <Card>
+          <StatsCard />
+        </Card>
+        <Card>
+          <AlertsCard />
+        </Card>
+        <Card>
+          <ChartCard />
+        </Card>
       </div>
 
-      <div className="grid grid-rows-13 gap-8 max-w-[900px] w-full">
+      <div className="grid grid-rows-13 gap-8 max-w-[1000px] w-full">
         <LineStatusTile title="bakerloo" color="#b44a0b"></LineStatusTile>
         <LineStatusTile title="central" color="#e02b24"></LineStatusTile>
         <LineStatusTile title="circle" color="#ffcc00"></LineStatusTile>
