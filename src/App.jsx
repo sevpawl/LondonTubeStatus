@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './global.css';
-import { Layout } from './components/RootContainer';
+import Layout from './components/ui/Layout';
 
 function App() {
   return (
