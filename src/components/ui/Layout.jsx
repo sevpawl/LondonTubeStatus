@@ -1,14 +1,30 @@
 import { Header, Card, LineStatusTile } from '../RootContainer';
+import '../../global.css';
 
 const Layout = () => {
   return (
-    <div className="mx-12 flex flex-col items-center">
+    <div className="flex flex-col items-center">
       <Header />
-      <Card />
-      <div className="grid grid-rows-4 gap-6 max-w-[900px] w-full">
-        <LineStatusTile></LineStatusTile>
-        <LineStatusTile></LineStatusTile>
-        <LineStatusTile></LineStatusTile>
+      <div className="flex flex-row gap-18 mb-12">
+        <Card />
+        <Card />
+        <Card />
+      </div>
+
+      <div className="grid grid-rows-13 gap-8 max-w-[900px] w-full">
+        <LineStatusTile title="bakerloo" color="#b44a0b"></LineStatusTile>
+        <LineStatusTile title="central" color="#e02b24"></LineStatusTile>
+        <LineStatusTile title="circle" color="#ffcc00"></LineStatusTile>
+        <LineStatusTile title="district" color="#008039"></LineStatusTile>
+        <LineStatusTile title="elizabeth" color="#7055a6"></LineStatusTile>
+        <LineStatusTile title="hammersmith & city" color="#d79caf"></LineStatusTile>
+        <LineStatusTile title="jubilee" color="#9ea7aa"></LineStatusTile>
+        <LineStatusTile title="metropolitan" color="#a10060"></LineStatusTile>
+        <LineStatusTile title="northern" color="#1a1a1a"></LineStatusTile>
+        <LineStatusTile title="overground" color="#f17a10"></LineStatusTile>
+        <LineStatusTile title="piccadilly" color="#003b8f"></LineStatusTile>
+        <LineStatusTile title="victoria" color="#00a3e0"></LineStatusTile>
+        <LineStatusTile title="waterloo & city" color="#99d1bf"></LineStatusTile>
       </div>
     </div>
   );
