@@ -3,7 +3,7 @@ import LineStatusBadge from './LineStatusBadge';
 
 const LineStatusTile = ({ title, color }) => {
   return (
-    <div className="w-full bg-neutral-200 rounded-full py-3 px-3 shadow-[8px_8px_16px_#b8b8b8,-8px_-8px_16px_#ffffff] cursor-pointer transition-all duration-300">
+    <div className="w-full bg-neutral-200 rounded-full py-3 px-3 shadow-[8px_8px_16px_#b8b8b8,-8px_-8px_16px_#ffffff] hover:shadow-[2px_2px_4px_#b8b8b8,-2px_-2px_4px_#ffffff] transition-all duration-300">
       <div className="bg-neutral-200 rounded-full overflow-hidden shadow-[inset_4px_4px_8px_#00000033,_inset_-4px_-4px_8px_#ffffff80] flex items-center justify-between w-full">
         <div className="flex items-center">
           <div
