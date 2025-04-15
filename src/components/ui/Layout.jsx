@@ -1,4 +1,12 @@
-import { Header, Card, LineStatusTile, StatsCard, AlertsCard, ChartCard } from '../RootContainer';
+import {
+  Header,
+  Card,
+  LineStatusTile,
+  StatsCard,
+  AlertsCard,
+  ChartCard,
+  Modal,
+} from '../RootContainer';
 import '../../global.css';
 
 const Layout = () => {
@@ -17,20 +25,20 @@ const Layout = () => {
         </Card>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1220px] w-full mb-8">      
-        <LineStatusTile title="bakerloo" color="#b44a0b"></LineStatusTile>
-        <LineStatusTile title="central" color="#e02b24"></LineStatusTile>
-        <LineStatusTile title="circle" color="#ffcc00"></LineStatusTile>
-        <LineStatusTile title="district" color="#008039"></LineStatusTile>
-        <LineStatusTile title="elizabeth" color="#7055a6"></LineStatusTile>
-        <LineStatusTile title="hammersmith & city" color="#d79caf"></LineStatusTile>
-        <LineStatusTile title="jubilee" color="#9ea7aa"></LineStatusTile>
-        <LineStatusTile title="metropolitan" color="#a10060"></LineStatusTile>
-        <LineStatusTile title="northern" color="#1a1a1a"></LineStatusTile>
-        <LineStatusTile title="overground" color="#f17a10"></LineStatusTile>
-        <LineStatusTile title="piccadilly" color="#003b8f"></LineStatusTile>
-        <LineStatusTile title="victoria" color="#00a3e0"></LineStatusTile>
-        <LineStatusTile title="waterloo & city" color="#99d1bf"></LineStatusTile>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1220px] w-full mb-8">
+        <LineStatusTile title="bakerloo" lineColor="#b44a0b"></LineStatusTile>
+        <LineStatusTile title="central" lineColor="#e02b24"></LineStatusTile>
+        <LineStatusTile title="circle" lineColor="#ffcc00"></LineStatusTile>
+        <LineStatusTile title="district" lineColor="#008039"></LineStatusTile>
+        <LineStatusTile title="elizabeth" lineColor="#7055a6"></LineStatusTile>
+        <LineStatusTile title="hammersmith & city" lineColor="#d79caf"></LineStatusTile>
+        <LineStatusTile title="jubilee" lineColor="#9ea7aa"></LineStatusTile>
+        <LineStatusTile title="metropolitan" lineColor="#a10060"></LineStatusTile>
+        <LineStatusTile title="northern" lineColor="#1a1a1a"></LineStatusTile>
+        <LineStatusTile title="overground" lineColor="#f17a10"></LineStatusTile>
+        <LineStatusTile title="piccadilly" lineColor="#003b8f"></LineStatusTile>
+        <LineStatusTile title="victoria" lineColor="#00a3e0"></LineStatusTile>
+        <LineStatusTile title="waterloo & city" lineColor="#99d1bf"></LineStatusTile>
       </div>
     </div>
   );
