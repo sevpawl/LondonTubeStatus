@@ -1,5 +1,5 @@
 function fetchTubeStatus(mode = 'tube') {
-  const BASE_URL = 'https://api.tfl.gov.uk/line/mode/tube/status';
+  const BASE_URL = 'https://api.tfl.gov.uk';
   const queryParams = '?detail=true';
   const endpoint = `/Line/Mode/${mode}/Status`;
   let fullUrl = `${BASE_URL}${endpoint}${queryParams}`;
@@ -15,5 +15,4 @@ function fetchTubeStatus(mode = 'tube') {
       console.log('error: ', error);
     });
 }
-
 export default fetchTubeStatus;
