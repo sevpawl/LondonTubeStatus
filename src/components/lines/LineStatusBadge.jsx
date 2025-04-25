@@ -1,12 +1,11 @@
 import { Modal } from '../RootContainer';
 import '../../global.css';
 
-
 const LineStatusBadge = ({ status, statusColor, onClick }) => {
   return (
     <div className="flex items-center">
       <div
-        className="h-7 px-3 py-1 ml-2 mr-5 bg-red-500 rounded-full text-sm font-medium cursor-default"
+        className="px-3 py-0.5 ml-2 mr-5 bg-red-500 rounded-full text-sm font-medium cursor-default"
         style={{
           boxShadow: 'inset 2px 2px 4px #f8f8f, inset -2px -2px 4px #ffffff',
         }}
