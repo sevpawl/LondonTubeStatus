@@ -25,7 +25,7 @@ const Layout = () => {
         </Card>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1220px] w-full mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1440px] w-full px-8 mb-8">
         <LineStatusTile title="bakerloo" lineColor="#b44a0b"></LineStatusTile>
         <LineStatusTile title="central" lineColor="#e02b24"></LineStatusTile>
         <LineStatusTile title="circle" lineColor="#ffcc00"></LineStatusTile>
