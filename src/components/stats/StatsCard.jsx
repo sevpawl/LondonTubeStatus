@@ -2,12 +2,14 @@ import '../../global.css';
 
 const StatsCard = () => {
   return (
-    <div className="cursor-default">
-      <div className="text-3xl not-first:text-neutral-100/80 font-extrabold drop-shadow-[_-3px_-3px_6px_#ffffff80,_4px_4px_2px_#00000033] mt-2 flex justify-center">
-        overview
+    <div className="flex flex-col h-full">
+      <div className="flex items-center justify-center mb-6">
+        <span className="text-3xl font-extrabold drop-shadow-[_-3px_-3px_6px_#ffffff80,_4px_4px_2px_#00000033]">
+          overview
+        </span>
       </div>
-      <div className="mt-7">
-        <div className="flex items-center justify-between gap-13 mb-2">
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
           <span className="text-gray-600 font-semibold">good service</span>
           <div className="flex items-center">
             <div className="w-3 h-3 rounded-full mr-2 bg-green-500"></div>
@@ -15,7 +17,7 @@ const StatsCard = () => {
           </div>
         </div>
 
-        <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center justify-between">
           <span className="text-gray-600 font-semibold">minor delays</span>
           <div className="flex items-center">
             <div className="w-3 h-3 rounded-full mr-2 bg-yellow-500"></div>
@@ -23,7 +25,7 @@ const StatsCard = () => {
           </div>
         </div>
 
-        <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center justify-between">
           <span className="text-gray-600 font-semibold">severe delays</span>
           <div className="flex items-center">
             <div className="w-3 h-3 rounded-full mr-2 bg-red-500"></div>
@@ -31,7 +33,7 @@ const StatsCard = () => {
           </div>
         </div>
 
-        <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center justify-between">
           <span className="text-gray-600 font-semibold">part closure</span>
           <div className="flex items-center">
             <div className="w-3 h-3 rounded-full mr-2 bg-red-600"></div>
@@ -39,7 +41,7 @@ const StatsCard = () => {
           </div>
         </div>
 
-        <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center justify-between">
           <span className="text-gray-600 font-semibold">planned</span>
           <div className="flex items-center">
             <div className="w-3 h-3 rounded-full mr-2 bg-purple-500"></div>
@@ -47,7 +49,7 @@ const StatsCard = () => {
           </div>
         </div>
 
-        <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center justify-between">
           <span className="text-gray-600 font-semibold">suspended</span>
           <div className="flex items-center">
             <div className="w-3 h-3 rounded-full mr-2 bg-black"></div>
