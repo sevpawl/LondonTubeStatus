@@ -13,7 +13,7 @@ const Layout = () => {
   return (
     <div className="flex flex-col items-center min-w-screen">
       <Header />
-      <div className="flex flex-row gap-18 mb-12">
+      <div className="flex flex-row gap-36 mb-18 rounded-3xl">
         <Card>
           <StatsCard />
         </Card>
@@ -25,7 +25,7 @@ const Layout = () => {
         </Card>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1440px] w-full px-8 mb-8">
+      <div className= "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-18 gap-y-10 max-w-[1440px] w-full mb-8  rounded-3xl">
         <LineStatusTile title="bakerloo" lineColor="#b44a0b"></LineStatusTile>
         <LineStatusTile title="central" lineColor="#e02b24"></LineStatusTile>
         <LineStatusTile title="circle" lineColor="#ffcc00"></LineStatusTile>
