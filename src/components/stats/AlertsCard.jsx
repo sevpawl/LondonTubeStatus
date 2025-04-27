@@ -1,6 +1,18 @@
+import { useEffect, useState } from 'react';
+import fetchTubeStatus from '../../services/api';
 import '../../global.css';
 
 const AlertsCard = (lineColor) => {
+  const [disruptions, setDisruptions] = useState([]);
+
+  useEffect(() => {
+    console.log('AlertsCard loaded');
+
+    fetchTubeStatus().then((data) => {
+      setDisruptions();
+    });
+  }, []);
+
   return (
     <div className="cursor-default overflow-auto w-full h-full px-4 py-2">
       <div className="flex items-center justify-center mb-4 md:mb-6">
