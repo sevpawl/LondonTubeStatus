@@ -1,4 +1,5 @@
 import '../../global.css';
+import Clock from './Clock';
 
 const Header = () => {
   const HandleRefresh = () => {
@@ -10,6 +11,7 @@ const Header = () => {
   return (
     <div className="w-full flex flex-col justify-between py-4 md:py-8 mb-14">
       <header className="flex flex-col md:flex-row items-center justify-between px-4 md:px-8 lg:px-16 gap-4">
+        <Clock></Clock>
         <h1 className="text-3xl md:text-4xl lg:text-6xl not-first:text-neutral-100/80 font-extrabold drop-shadow-[_-3px_-3px_6px_#ffffff80,_4px_4px_2px_#00000033] cursor-default text-center md:text-left">
           underground status
         </h1>
