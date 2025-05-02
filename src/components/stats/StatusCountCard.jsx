@@ -45,8 +45,8 @@ const StatsCard = () => {
         <div className="flex items-center justify-between">
           <span className="text-gray-600 font-semibold text-sm md:text-base">minor delays</span>
           <div className="flex items-center">
-            <div className="w-3 h-3 rounded-full mr-2 bg-yellow-500"></div>
-            <span className="text-gray-800 font-bold">2</span>
+            <div className="w-3 h-3 rounded-full mr-2 bg-yellow-50"></div>
+            <span className="text-gray-800 font-bold">{statusCounts.minorDelays}</span>
           </div>
         </div>
 
@@ -54,7 +54,7 @@ const StatsCard = () => {
           <span className="text-gray-600 font-semibold text-sm md:text-base">severe delays</span>
           <div className="flex items-center">
             <div className="w-3 h-3 rounded-full mr-2 bg-red-500"></div>
-            <span className="text-gray-800 font-bold"> </span>
+            <span className="text-gray-800 font-bold">{statusCounts.severeDelays}</span>
           </div>
         </div>
 
@@ -62,7 +62,7 @@ const StatsCard = () => {
           <span className="text-gray-600 font-semibold text-sm md:text-base">part closure</span>
           <div className="flex items-center">
             <div className="w-3 h-3 rounded-full mr-2 bg-red-600"></div>
-            <span className="text-gray-800 font-bold">4</span>
+            <span className="text-gray-800 font-bold">{statusCounts.partClosure}</span>
           </div>
         </div>
 
@@ -70,7 +70,7 @@ const StatsCard = () => {
           <span className="text-gray-600 font-semibold text-sm md:text-base">planned</span>
           <div className="flex items-center">
             <div className="w-3 h-3 rounded-full mr-2 bg-purple-500"></div>
-            <span className="text-gray-800 font-bold">5</span>
+            <span className="text-gray-800 font-bold">{statusCounts.planned}</span>
           </div>
         </div>
 
@@ -78,7 +78,7 @@ const StatsCard = () => {
           <span className="text-gray-600 font-semibold text-sm md:text-base">suspended</span>
           <div className="flex items-center">
             <div className="w-3 h-3 rounded-full mr-2 bg-black"></div>
-            <span className="text-gray-800 font-bold">6</span>
+            <span className="text-gray-800 font-bold">{statusCounts.suspended}</span>
           </div>
         </div>
       </div>
