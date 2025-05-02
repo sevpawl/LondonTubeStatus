@@ -55,7 +55,7 @@ function countStatusDisruptions(data) {
   return statusCounts;
 }
 
-export default { fetchTubeStatus, countStatusDisruptions };
+export { fetchTubeStatus, countStatusDisruptions };
 
 fetchTubeStatus().then((data) => {
   countStatusDisruptions(data);
