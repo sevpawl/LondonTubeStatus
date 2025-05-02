@@ -1,6 +1,7 @@
 import '../../global.css';
 import { fetchTubeStatus, countStatusDisruptions } from '../../services/api';
 import { useState, useEffect } from 'react';
+import statusColors from '../../utils/Colors';
 
 const StatsCard = () => {
   const [statusCounts, setStatusCounts] = useState({
@@ -37,7 +38,7 @@ const StatsCard = () => {
         <div className="flex items-center justify-between">
           <span className="text-gray-600 font-semibold text-sm md:text-base">good service</span>
           <div className="flex items-center">
-            <div className="w-3 h-3 rounded-full mr-2 bg-green-500"></div>
+            <div className={`w-3 h-3 rounded-full mr-2 ${statusColors.goodService}`}></div>
             <span className="text-gray-800 font-bold">{statusCounts.goodService}</span>
           </div>
         </div>
@@ -45,7 +46,7 @@ const StatsCard = () => {
         <div className="flex items-center justify-between">
           <span className="text-gray-600 font-semibold text-sm md:text-base">minor delays</span>
           <div className="flex items-center">
-            <div className="w-3 h-3 rounded-full mr-2 bg-yellow-50"></div>
+            <div className={`w-3 h-3 rounded-full mr-2 ${statusColors.minorDelays}`}></div>
             <span className="text-gray-800 font-bold">{statusCounts.minorDelays}</span>
           </div>
         </div>
@@ -53,7 +54,7 @@ const StatsCard = () => {
         <div className="flex items-center justify-between">
           <span className="text-gray-600 font-semibold text-sm md:text-base">severe delays</span>
           <div className="flex items-center">
-            <div className="w-3 h-3 rounded-full mr-2 bg-red-500"></div>
+            <div className={`w-3 h-3 rounded-full mr-2 ${statusColors.severeDelays}`}></div>
             <span className="text-gray-800 font-bold">{statusCounts.severeDelays}</span>
           </div>
         </div>
@@ -61,7 +62,7 @@ const StatsCard = () => {
         <div className="flex items-center justify-between">
           <span className="text-gray-600 font-semibold text-sm md:text-base">part closure</span>
           <div className="flex items-center">
-            <div className="w-3 h-3 rounded-full mr-2 bg-red-600"></div>
+            <div className={`w-3 h-3 rounded-full mr-2 ${statusColors.partClosure}`}></div>
             <span className="text-gray-800 font-bold">{statusCounts.partClosure}</span>
           </div>
         </div>
@@ -69,7 +70,7 @@ const StatsCard = () => {
         <div className="flex items-center justify-between">
           <span className="text-gray-600 font-semibold text-sm md:text-base">planned</span>
           <div className="flex items-center">
-            <div className="w-3 h-3 rounded-full mr-2 bg-purple-500"></div>
+            <div className={`w-3 h-3 rounded-full mr-2 ${statusColors.planned}`}></div>
             <span className="text-gray-800 font-bold">{statusCounts.planned}</span>
           </div>
         </div>
@@ -77,7 +78,7 @@ const StatsCard = () => {
         <div className="flex items-center justify-between">
           <span className="text-gray-600 font-semibold text-sm md:text-base">suspended</span>
           <div className="flex items-center">
-            <div className="w-3 h-3 rounded-full mr-2 bg-black"></div>
+            <div className={`w-3 h-3 rounded-full mr-2 ${statusColors.suspended}`}></div>
             <span className="text-gray-800 font-bold">{statusCounts.suspended}</span>
           </div>
         </div>
