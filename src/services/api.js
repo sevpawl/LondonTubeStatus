@@ -23,6 +23,7 @@ function fetchTubeStatus(mode = 'tube') {
 // count disruptions
 
 function countStatusDisruptions(data) {
+  console.log(data);
   const statusCounts = {
     goodService: 0,
     minorDelays: 0,
@@ -32,28 +33,25 @@ function countStatusDisruptions(data) {
     suspended: 0,
   };
 
-  const statusSeverity = lineStatuses[0].statusSeverity;
-  const statusDescription = lineStatuses[0].statusSeverityDescription;
+  data.forEach((line) => {
+    const statusDescription = line.lineStatuses[0].statusSeverityDescription.toLowerCase();
 
-  // make status descriptions lowercase
-  const statusDescriptionLower = statusDescription.lower();
+    if (statusDescription.includes('good service')) {
+      statusCounts.goodService++;
+    } else if (statusDescription.includes('minor delays')) {
+      statusCounts.minorDelays++;
+    } else if (statusDescription.includes('severe delays')) {
+      statusCounts.severeDelays++;
+    } else if (statusDescription.includes('part closure')) {
+      statusCounts.partClosure++;
+    } else if (statusDescription.includes('planned')) {
+      statusCounts.planned++;
+    } else if (statusDescription.includes('suspended')) {
+      statusCounts.suspended++;
+    }
+  });
 
-  if (statusDescriptionLower.includes('good service')) {
-    goodService += 1;
-  } else if (statusDescriptionLower.includes('minor delays')) {
-    minorDelays += 1;
-  } else if (statusDescriptionLower.includes('severe delays')) {
-    severeDelays += 1;
-  } else if (statusDescriptionLower.includes('part closure')) {
-    partClosure += 1;
-  } else if (statusDescriptionLower.includes('planned')) {
-    planned += 1;
-  } else if (statusDescriptionLower.includes('suspended')) {
-    suspended += 1;
-  }
-
-  console.log('good service: ', goodService);
-  console.log('minor delays: ', minorDelays);
+  console.log('status counts: ', statusCounts);
   return statusCounts;
 }
 
