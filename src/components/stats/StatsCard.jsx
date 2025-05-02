@@ -1,6 +1,31 @@
 import '../../global.css';
+import { fetchTubeStatus, countStatusDisruptions } from '../../services/api';
+import { useState, useEffect } from 'react';
 
 const StatsCard = () => {
+  const [statusCounts, setStatusCounts] = useState({
+    goodService: 0,
+    minorDelays: 0,
+    severeDelays: 0,
+    partClosure: 0,
+    planned: 0,
+    suspended: 0,
+  });
+
+  useEffect(() => {
+    const fetchStatsCardData = async () => {
+      try {
+        const data = await fetchTubeStatus();
+        const counts = countStatusDisruptions(data);
+        setStatusCounts(counts);
+      } catch (error) {
+        console.log('error fetching status counts: ', error);
+      }
+    };
+
+    fetchStatsCardData();
+  }, []);
+
   return (
     <div className="flex flex-col h-full w-full">
       <div className="flex items-center justify-center mb-4 md:mb-6">
@@ -13,7 +38,7 @@ const StatsCard = () => {
           <span className="text-gray-600 font-semibold text-sm md:text-base">good service</span>
           <div className="flex items-center">
             <div className="w-3 h-3 rounded-full mr-2 bg-green-500"></div>
-            <span className="text-gray-800 font-bold">1</span>
+            <span className="text-gray-800 font-bold">{statusCounts.goodService}</span>
           </div>
         </div>
 
@@ -29,7 +54,7 @@ const StatsCard = () => {
           <span className="text-gray-600 font-semibold text-sm md:text-base">severe delays</span>
           <div className="flex items-center">
             <div className="w-3 h-3 rounded-full mr-2 bg-red-500"></div>
-            <span className="text-gray-800 font-bold">3</span>
+            <span className="text-gray-800 font-bold"> </span>
           </div>
         </div>
 
