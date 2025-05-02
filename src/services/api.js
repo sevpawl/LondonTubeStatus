@@ -56,3 +56,8 @@ function countStatusDisruptions(data) {
 }
 
 export default { fetchTubeStatus, countStatusDisruptions };
+
+fetchTubeStatus().then((data) => {
+  countStatusDisruptions(data);
+  console.log('here is the the data: ', data);
+});
