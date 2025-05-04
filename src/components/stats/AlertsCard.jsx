@@ -1,16 +1,23 @@
 import { useEffect, useState } from 'react';
-import fetchTubeStatus from '../../services/api';
+import { fetchTubeStatus, getStatusDescriptions } from '../../services/api';
 import '../../global.css';
 
 const AlertsCard = (lineColor) => {
-  const [disruptions, setDisruptions] = useState([]);
+  const [descriptions, setAlertsDescriptions] = useState([]);
 
   useEffect(() => {
     console.log('AlertsCard loaded');
 
-    fetchTubeStatus().then((data) => {
-      setDisruptions();
-    });
+    const fetchAlertsCardData = async () => {
+      try {
+        const data = await fetchTubeStatus();
+        const descriptions = getStatusDescriptions(data);
+        setAlertsDescriptions(descriptions);
+      } catch (error) {
+        console.log('error fetching alerts card data: ', error);
+      }
+    };
+    fetchAlertsCardData();
   }, []);
 
   return (
