@@ -4,9 +4,8 @@ function fetchTubeStatus(mode = 'tube') {
   const BASE_URL = 'https://api.tfl.gov.uk';
   const queryParams = '?detail=true';
   const endpoint = `/Line/Mode/${mode}/Status`;
-  let fullUrl = `${BASE_URL}${endpoint}${queryParams}`;
+  const fullUrl = `${BASE_URL}${endpoint}${queryParams}`;
 
-  console.log('fetching tube statuses');
   return fetch(fullUrl)
     .then((response) => response.json())
     .then((data) => {
@@ -33,7 +32,6 @@ function getStatusDescriptions(data) {
 // count disruptions
 
 function countStatusDisruptions(data) {
-  console.log(data);
   const statusCounts = {
     goodService: 0,
     minorDelays: 0,
@@ -65,7 +63,7 @@ function countStatusDisruptions(data) {
   return statusCounts;
 }
 
-export { fetchTubeStatus, countStatusDisruptions };
+export { fetchTubeStatus, countStatusDisruptions, getStatusDescriptions };
 
 fetchTubeStatus().then((data) => {
   countStatusDisruptions(data);
