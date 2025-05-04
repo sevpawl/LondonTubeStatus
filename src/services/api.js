@@ -1,5 +1,3 @@
-import { CoinsIcon } from 'lucide-react';
-
 function fetchTubeStatus(mode = 'tube') {
   const BASE_URL = 'https://api.tfl.gov.uk';
   const queryParams = '?detail=true';
@@ -9,7 +7,7 @@ function fetchTubeStatus(mode = 'tube') {
   return fetch(fullUrl)
     .then((response) => response.json())
     .then((data) => {
-      console.log('success: ', data);
+      console.log('fecth tube status success: ', data);
       return data;
     })
     .catch((error) => {
@@ -22,10 +20,8 @@ function fetchTubeStatus(mode = 'tube') {
 // get status severity and description
 
 function getStatusDescriptions(data) {
-  console.log('status descriptions:', data);
-
   const x = data.map((line) => line.lineStatuses[0].reason).filter(Boolean);
-  console.log(x);
+  console.log('status descriptions:', x);
   return x;
 }
 
@@ -67,6 +63,5 @@ export { fetchTubeStatus, countStatusDisruptions, getStatusDescriptions };
 
 fetchTubeStatus().then((data) => {
   countStatusDisruptions(data);
-  console.log('here is the the data: ', data);
   getStatusDescriptions(data);
 });
