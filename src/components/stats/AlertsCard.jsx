@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { fetchTubeStatus, getStatusDescriptions } from '../../services/api';
+import { lineColors } from '../../utils/Colors';
 import '../../global.css';
 
 const AlertsCard = (lineColor) => {
-  const [descriptions, setAlertsDescriptions] = useState([]);
+  const [description, setAlertsDescriptions] = useState([]);
 
   useEffect(() => {
     console.log('AlertsCard loaded');
@@ -11,8 +12,8 @@ const AlertsCard = (lineColor) => {
     const fetchAlertsCardData = async () => {
       try {
         const data = await fetchTubeStatus();
-        const descriptions = getStatusDescriptions(data);
-        setAlertsDescriptions(descriptions);
+        const description = getStatusDescriptions(data);
+        setAlertsDescriptions(description);
       } catch (error) {
         console.log('error fetching alerts card data: ', error);
       }
@@ -28,8 +29,10 @@ const AlertsCard = (lineColor) => {
         </span>
       </div>
       <div className="grid gap-3 overflow-y-auto max-h-[200px]">
-        <div className="px-3 py-2 rounded-2xl bg-red-500/80 text-white font-extrabold text-sm text-md">
-          {descriptions}
+        <div
+          className={`px-3 py-2 rounded-2xl ${lineColors[lineColor]} text-white font-extrabold text-sm text-md`}
+        >
+          {description}
         </div>
       </div>
     </div>
