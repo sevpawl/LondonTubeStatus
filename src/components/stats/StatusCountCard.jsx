@@ -29,88 +29,101 @@ const StatsCard = () => {
   }, []);
 
   return (
-    <div className="flex flex-col h-full w-full">
-      <div className="flex items-center justify-center mb-3">
-        <span className="text-xl md:text-2xl font-extrabold drop-shadow-[_-3px_-3px_6px_#ffffff80,_4px_4px_2px_#00000033]">
+    <div className="flex flex-col h-full w-full items-center justify-center px-4 py-4">
+      <div className="flex items-center justify-center mt-[-8px]">
+        <span className="text-2xl md:text-3xl not-first:text-neutral-100/80 font-extrabold drop-shadow-[_-3px_-3px_6px_#ffffff80,_4px_4px_2px_#00000033] mb-6">
           overview
         </span>
       </div>
-
-      <div className="mb-2 p-2 rounded-lg bg-gray-100 border border-gray-200">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <div className={`w-2.5 h-2.5 rounded-full ${statusColors.goodService}`}></div>
-            <span className="text-gray-600 font-semibold text-sm">good service</span>
+      <div className="w-full max-w-md flex flex-col items-center">
+        {/* good service */}
+        <div className="w-full mb-2.5 p-2 rounded-lg border border-gray-100 flex items-center justify-between bg-neutral-100/80 transition-transform hover:-translate-y-0.5 hover:shadow-lg group cursor-pointer">
+          <div className="flex items-center space-x-3">
+            <div className="flex items-center justify-center ml-2ml-2">
+              <ThumbsUp size={16} className="text-green-600" />
+            </div>
+            <span className="text-gray-600 font-semibold text-sm lowercase px-6">
+              good service
+            </span>
           </div>
-          <div className="flex items-center">
-            <ThumbsUp size={16} className="text-black/70 mr-1"></ThumbsUp>
-            <span className="text-gray-800 font-bold">{statusCounts.goodService}</span>
-          </div>
+          <span className="text-gray-600 font-bold text-sm lowercase mr-2">
+            {statusCounts.goodService}
+          </span>
         </div>
-      </div>
 
-      <div className="mb-2 p-2 rounded-lg bg-gray-50 border border-gray-200">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <div className={`w-2.5 h-2.5 rounded-full ${statusColors.minorDelays}`}></div>
-            <span className="text-gray-600 font-semibold text-sm">minor delays</span>
+        {/* minor delays */}
+        <div className="w-full mb-2.5 p-2 rounded-lg border border-gray-100 flex items-center justify-between bg-neutral-100/80 transition-transform hover:-translate-y-0.5 hover:shadow-lg group cursor-pointer">
+          <div className="flex items-center space-x-3">
+            <div className="flex items-center justify-center ml-2ml-2">
+              <Hourglass size={16} className="text-yellow-600" />
+            </div>
+            <span className="text-gray-600 font-semibold text-sm lowercase px-6">
+              minor delays
+            </span>
           </div>
-          <div className="flex items-center">
-            <Hourglass size={16} className="text-black/70 mr-1"></Hourglass>
-            <span className="text-gray-800 font-bold">{statusCounts.minorDelays}</span>
-          </div>
+          <span className="text-gray-800 font-bold text-sm lowercase mr-2">
+            {statusCounts.minorDelays}
+          </span>
         </div>
-      </div>
 
-      <div className="mb-2 p-2 rounded-lg bg-gray-50 border border-gray-200">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <div className={`w-2.5 h-2.5 rounded-full ${statusColors.severeDelays}`}></div>
-            <span className="text-gray-600 font-semibold text-sm">severe delays</span>
+        {/* severe delays */}
+        <div className="w-full mb-2.5 p-2 rounded-lg border border-gray-100 flex items-center justify-between bg-neutral-100/80 transition-transform hover:-translate-y-0.5 hover:shadow-lg group cursor-pointer">
+          <div className="flex items-center space-x-3">
+            <div className="flex items-center justify-center ml-2">
+              <AlertTriangle size={16} className="text-red-600" />
+            </div>
+            <span className="text-gray-600 font-semibold text-sm lowercase px-6">
+              severe delays
+            </span>
           </div>
-          <div className="flex items-center">
-            <AlertTriangle size={16} className="text-black/70 mr-1"></AlertTriangle>
-            <span className="text-gray-800 font-bold">{statusCounts.severeDelays}</span>
-          </div>
+          <span className="text-gray-800 font-bold text-sm lowercase mr-2">
+            {statusCounts.severeDelays}
+          </span>
         </div>
-      </div>
 
-      <div className="mb-2 p-2 rounded-lg bg-gray-50 border border-gray-200">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <div className={`w-2.5 h-2.5 rounded-full ${statusColors.partClosure}`}></div>
-            <span className="text-gray-600 font-semibold text-sm">part closure</span>
+        {/* part closure */}
+        <div className="w-full mb-2.5 p-2 rounded-lg border border-gray-100 flex items-center justify-between bg-neutral-100/80 transition-transform hover:-translate-y-0.5 hover:shadow-lg group cursor-pointer">
+          <div className="flex items-center space-x-3">
+            <div className="flex items-center justify-center ml-2">
+              <Construction size={16} className="text-orange-600" />
+            </div>
+            <span className="text-gray-600 font-semibold text-sm lowercase px-6">
+              part closure
+            </span>
           </div>
-          <div className="flex items-center">
-            <Construction size={16} className="text-black/70 mr-1"></Construction>
-            <span className="text-gray-800 font-bold">{statusCounts.partClosure}</span>
-          </div>
+          <span className="text-gray-800 font-bold text-sm lowercase mr-2">
+            {statusCounts.partClosure}
+          </span>
         </div>
-      </div>
 
-      <div className="mb-2 p-2 rounded-lg bg-gray-50 border border-gray-200">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <div className={`w-2.5 h-2.5 rounded-full ${statusColors.planned}`}></div>
-            <span className="text-gray-600 font-semibold text-sm">planned</span>
+        {/* planned */}
+        <div className="w-full mb-2.5 p-2 rounded-lg border border-gray-100 flex items-center justify-between bg-neutral-100/80 transition-transform hover:-translate-y-0.5 hover:shadow-lg group cursor-pointer">
+          <div className="flex items-center space-x-3">
+            <div className="flex items-center justify-center ml-2">
+              <Hammer size={16} className="text-blue-600" />
+            </div>
+            <span className="text-gray-600 font-semibold text-sm lowercase px-6">
+              planned
+            </span>
           </div>
-          <div className="flex items-center">
-            <Hammer size={16} className="text-black/70 mr-1"></Hammer>
-            <span className="text-gray-800 font-bold">{statusCounts.planned}</span>
-          </div>
+          <span className="text-gray-800 font-bold text-sm lowercase mr-2">
+            {statusCounts.planned}
+          </span>
         </div>
-      </div>
 
-      <div className="mb-2 p-2 rounded-lg bg-gray-50 border border-gray-200">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <div className={`w-2.5 h-2.5 rounded-full ${statusColors.suspended}`}></div>
-            <span className="text-gray-600 font-semibold text-sm">suspended</span>
+        {/* suspended */}
+        <div className="w-full mb-2.5 p-2 rounded-lg border border-gray-100 flex items-center justify-between bg-neutral-100/80 transition-transform hover:-translate-y-0.5 hover:shadow-lg group cursor-pointer">
+          <div className="flex items-center space-x-3">
+            <div className="flex items-center justify-center ml-2">
+              <Ban size={16} className="text-gray-700" />
+            </div>
+            <span className="text-gray-600 font-semibold text-sm lowercase px-6">
+              suspended
+            </span>
           </div>
-          <div className="flex items-center">
-            <Ban size={16} className="text-black/70 mr-1"></Ban>
-            <span className="text-gray-800 font-bold">{statusCounts.suspended}</span>
-          </div>
+          <span className="text-gray-800 font-bold text-sm lowercase mr-2">
+            {statusCounts.suspended}
+          </span>
         </div>
       </div>
     </div>
