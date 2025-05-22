@@ -1,5 +1,5 @@
 function setLastUpdated() {
-  const now = new Date().toLocaleString();
+  const now = new Date().toISOString();
   localStorage.setItem('lastUpdated', now);
   console.log('current time: ', now);
 }
