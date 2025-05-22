@@ -10,4 +10,4 @@ function getLastUpdated() {
   return lastUpdated ? new Date(lastUpdated) : null;
 }
 
-export default { getLastUpdated, setLastUpdated };
+export { getLastUpdated, setLastUpdated };
