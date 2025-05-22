@@ -1,0 +1,7 @@
+*.js text diff=javascript
+*.jsx text diff=javascript
+*.ts text diff=typescript
+*.tsx text diff=typescript
+*.css text
+*.html text
+* text=auto eol=lf
