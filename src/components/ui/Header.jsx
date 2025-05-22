@@ -17,7 +17,7 @@ const Header = () => {
     window.location.reload();
     console.log('page reloaded');
     setCurrentTime(getCurrentTime());
-    console.log('current time: ', currentTime);
+    console.log(currentTime ? 'current time: ' + currentTime : 'null');
   };
 
   return (
