@@ -24,18 +24,16 @@ const AlertsCard = (lineColor) => {
 
   return (
     <div className="cursor-default w-full h-full px-4 py-2">
-      <div className="flex items-center justify-center mb-4 md:mb-6">
+      <div className="flex items-center justify-center mb-6 md:mb-6">
         <span className="text-2xl md:text-3xl not-first:text-neutral-100/80 font-extrabold drop-shadow-[_-3px_-3px_6px_#ffffff80,_4px_4px_2px_#00000033]">
           alerts
         </span>
       </div>
-      <div
-        className="grid gap-3 overflow-y-auto max-h-[200px]cursor-pointer"
-      >
+      <div className="grid gap-3 overflow-y-auto max-h-[200px] bg-neutral-100/80 rounded-lg transition-transform hover:-translate-y-0.5 hover:shadow-lg group cursor-pointer">
         {description.map((alertText, position) => (
           <div
             key={position}
-            className={`px-3 py-2 rounded-2xl ${lineColors[lineColor]} text-sm`}
+            className={`justify-center px-4 py-4 rounded-2xl ${lineColors[lineColor]} text-neutral-600 font-semibold text-sm`}
           >
             {alertText}
           </div>
