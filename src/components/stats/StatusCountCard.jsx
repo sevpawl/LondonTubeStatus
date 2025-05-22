@@ -37,9 +37,9 @@ const StatsCard = () => {
       </div>
       <div className="w-full max-w-md flex flex-col items-center">
         {/* good service */}
-        <div className="w-full mb-2.5 p-2 rounded-lg border border-gray-100 flex items-center justify-between bg-neutral-100/80 transition-transform hover:-translate-y-0.5 hover:shadow-lg group cursor-pointer">
+        <div className="w-full mb-2.5 p-2 rounded-lg flex items-center justify-between bg-neutral-100/80 transition-transform hover:-translate-y-0.5 hover:shadow-lg group cursor-pointer">
           <div className="flex items-center space-x-3">
-            <div className="flex items-center justify-center ml-2ml-2">
+            <div className="flex items-center justify-center bg-green-200 rounded-full w-7 h-7 mr-1 group-hover:scale-110 transition-transform ml-2">
               <ThumbsUp size={16} className="text-green-600" />
             </div>
             <span className="text-gray-600 font-semibold text-sm lowercase px-6">
@@ -52,9 +52,9 @@ const StatsCard = () => {
         </div>
 
         {/* minor delays */}
-        <div className="w-full mb-2.5 p-2 rounded-lg border border-gray-100 flex items-center justify-between bg-neutral-100/80 transition-transform hover:-translate-y-0.5 hover:shadow-lg group cursor-pointer">
+        <div className="w-full mb-2.5 p-2 rounded-lg flex items-center justify-between bg-neutral-100/80 transition-transform hover:-translate-y-0.5 hover:shadow-lg group cursor-pointer">
           <div className="flex items-center space-x-3">
-            <div className="flex items-center justify-center ml-2ml-2">
+            <div className="flex items-center justify-center bg-yellow-200 rounded-full w-7 h-7 mr-1 group-hover:scale-110 transition-transform ml-2">
               <Hourglass size={16} className="text-yellow-600" />
             </div>
             <span className="text-gray-600 font-semibold text-sm lowercase px-6">
@@ -67,9 +67,9 @@ const StatsCard = () => {
         </div>
 
         {/* severe delays */}
-        <div className="w-full mb-2.5 p-2 rounded-lg border border-gray-100 flex items-center justify-between bg-neutral-100/80 transition-transform hover:-translate-y-0.5 hover:shadow-lg group cursor-pointer">
+        <div className="w-full mb-2.5 p-2 rounded-lg flex items-center justify-between bg-neutral-100/80 transition-transform hover:-translate-y-0.5 hover:shadow-lg group cursor-pointer">
           <div className="flex items-center space-x-3">
-            <div className="flex items-center justify-center ml-2">
+            <div className="flex items-center justify-center bg-red-200 rounded-full w-7 h-7 mr-1 group-hover:scale-110 transition-transform ml-2">
               <AlertTriangle size={16} className="text-red-600" />
             </div>
             <span className="text-gray-600 font-semibold text-sm lowercase px-6">
@@ -82,9 +82,9 @@ const StatsCard = () => {
         </div>
 
         {/* part closure */}
-        <div className="w-full mb-2.5 p-2 rounded-lg border border-gray-100 flex items-center justify-between bg-neutral-100/80 transition-transform hover:-translate-y-0.5 hover:shadow-lg group cursor-pointer">
+        <div className="w-full mb-2.5 p-2 rounded-lg flex items-center justify-between bg-neutral-100/80 transition-transform hover:-translate-y-0.5 hover:shadow-lg group cursor-pointer">
           <div className="flex items-center space-x-3">
-            <div className="flex items-center justify-center ml-2">
+            <div className="flex items-center justify-center bg-orange-200 rounded-full w-7 h-7 mr-1 group-hover:scale-110 transition-transform ml-2">
               <Construction size={16} className="text-orange-600" />
             </div>
             <span className="text-gray-600 font-semibold text-sm lowercase px-6">
@@ -97,9 +97,9 @@ const StatsCard = () => {
         </div>
 
         {/* planned */}
-        <div className="w-full mb-2.5 p-2 rounded-lg border border-gray-100 flex items-center justify-between bg-neutral-100/80 transition-transform hover:-translate-y-0.5 hover:shadow-lg group cursor-pointer">
+        <div className="w-full mb-2.5 p-2 rounded-lg flex items-center justify-between bg-neutral-100/80 transition-transform hover:-translate-y-0.5 hover:shadow-lg group cursor-pointer">
           <div className="flex items-center space-x-3">
-            <div className="flex items-center justify-center ml-2">
+            <div className="flex items-center justify-center bg-blue-200 rounded-full w-7 h-7 mr-1 group-hover:scale-110 transition-transform ml-2">
               <Hammer size={16} className="text-blue-600" />
             </div>
             <span className="text-gray-600 font-semibold text-sm lowercase px-6">
@@ -112,9 +112,9 @@ const StatsCard = () => {
         </div>
 
         {/* suspended */}
-        <div className="w-full mb-2.5 p-2 rounded-lg border border-gray-100 flex items-center justify-between bg-neutral-100/80 transition-transform hover:-translate-y-0.5 hover:shadow-lg group cursor-pointer">
+        <div className="w-full mb-2.5 p-2 rounded-lg flex items-center justify-between bg-neutral-100/80 transition-transform hover:-translate-y-0.5 hover:shadow-lg group cursor-pointer">
           <div className="flex items-center space-x-3">
-            <div className="flex items-center justify-center ml-2">
+            <div className="flex items-center justify-center bg-gray-300 rounded-full w-7 h-7 mr-1 group-hover:scale-110 transition-transform ml-2">
               <Ban size={16} className="text-gray-700" />
             </div>
             <span className="text-gray-600 font-semibold text-sm lowercase px-6">
