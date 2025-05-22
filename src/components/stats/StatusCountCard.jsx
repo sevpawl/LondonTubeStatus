@@ -29,7 +29,7 @@ const StatsCard = () => {
   }, []);
 
   return (
-    <div className="flex flex-col h-full w-full items-center justify-center px-4 py-4">
+    <div className="flex flex-col h-full w-full items-center justify-center px-4 py-4 cursor-default">
       <div className="flex items-center justify-center mt-[-8px]">
         <span className="text-2xl md:text-3xl not-first:text-neutral-100/80 font-extrabold drop-shadow-[_-3px_-3px_6px_#ffffff80,_4px_4px_2px_#00000033] mb-6">
           overview
