@@ -13,6 +13,7 @@ const AlertsCard = (lineColor) => {
       try {
         const data = await fetchTubeStatus();
         const description = getStatusDescriptions(data);
+        console.log('Alerts array:', description);
         setAlertsDescriptions(description);
       } catch (error) {
         console.log('error fetching alerts card data: ', error);
@@ -28,12 +29,17 @@ const AlertsCard = (lineColor) => {
           alerts
         </span>
       </div>
-      <div className="grid gap-3 overflow-y-auto max-h-[200px]">
-        <div
-          className={`px-3 py-2 rounded-2xl ${lineColors[lineColor]} text-white font-extrabold text-sm text-md`}
-        >
-          {description}
-        </div>
+      <div
+        className="grid gap-3 overflow-y-auto max-h-[200px]cursor-pointer"
+      >
+        {description.map((alertText, position) => (
+          <div
+            key={position}
+            className={`px-3 py-2 rounded-2xl ${lineColors[lineColor]} text-sm`}
+          >
+            {alertText}
+          </div>
+        ))}
       </div>
     </div>
   );
