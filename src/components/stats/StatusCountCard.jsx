@@ -2,6 +2,7 @@ import '../../global.css';
 import { fetchTubeStatus, countStatusDisruptions } from '../../services/api';
 import { useState, useEffect } from 'react';
 import { statusColors } from '../../utils/Colors';
+import StatusCountCardItems from './StatusCountCardItems';
 import { AlertTriangle, Ban, ThumbsUp, Construction, Hourglass, Hammer } from 'lucide-react';
 
 const StatsCard = () => {
@@ -36,20 +37,11 @@ const StatsCard = () => {
         </span>
       </div>
       <div className="w-full max-w-md flex flex-col items-center">
-        {/* good service */}
-        <div className="w-full mb-2.5 p-2 rounded-lg flex items-center justify-between bg-neutral-100/80 transition-transform hover:-translate-y-0.5 hover:shadow-lg group cursor-pointer">
-          <div className="flex items-center space-x-3">
-            <div className="flex items-center justify-center bg-green-200 rounded-full w-7 h-7 mr-1 group-hover:scale-110 transition-transform ml-2">
-              <ThumbsUp size={16} className="text-green-600" />
-            </div>
-            <span className="text-gray-600 font-semibold text-sm lowercase px-6">
-              good service
-            </span>
-          </div>
-          <span className="text-gray-600 font-bold text-sm lowercase mr-2">
-            {statusCounts.goodService}
-          </span>
-        </div>
+        <StatusCountCardItems 
+          icon={<ThumbsUp size={16} className="text-green-600" />}
+          statusType="good service"
+          statusCount={statusCounts.minorDelays}>
+        </StatusCountCardItems>
 
         {/* minor delays */}
         <div className="w-full mb-2.5 p-2 rounded-lg flex items-center justify-between bg-neutral-100/80 transition-transform hover:-translate-y-0.5 hover:shadow-lg group cursor-pointer">
