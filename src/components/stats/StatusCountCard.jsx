@@ -37,86 +37,42 @@ const StatsCard = () => {
         </span>
       </div>
       <div className="w-full max-w-md flex flex-col items-center">
-        <StatusCountCardItems 
+        <StatusCountCardItems
           icon={<ThumbsUp size={16} className="text-green-600" />}
           statusType="good service"
-          statusCount={statusCounts.minorDelays}>
-        </StatusCountCardItems>
-
-        {/* minor delays */}
-        <div className="w-full mb-2.5 p-2 rounded-lg flex items-center justify-between bg-neutral-100/80 transition-transform hover:-translate-y-0.5 hover:shadow-lg group cursor-pointer">
-          <div className="flex items-center space-x-3">
-            <div className="flex items-center justify-center bg-yellow-200 rounded-full w-7 h-7 mr-1 group-hover:scale-110 transition-transform ml-2">
-              <Hourglass size={16} className="text-yellow-600" />
-            </div>
-            <span className="text-gray-600 font-semibold text-sm lowercase px-6">
-              minor delays
-            </span>
-          </div>
-          <span className="text-gray-800 font-bold text-sm lowercase mr-2">
-            {statusCounts.minorDelays}
-          </span>
-        </div>
-
-        {/* severe delays */}
-        <div className="w-full mb-2.5 p-2 rounded-lg flex items-center justify-between bg-neutral-100/80 transition-transform hover:-translate-y-0.5 hover:shadow-lg group cursor-pointer">
-          <div className="flex items-center space-x-3">
-            <div className="flex items-center justify-center bg-red-200 rounded-full w-7 h-7 mr-1 group-hover:scale-110 transition-transform ml-2">
-              <AlertTriangle size={16} className="text-red-600" />
-            </div>
-            <span className="text-gray-600 font-semibold text-sm lowercase px-6">
-              severe delays
-            </span>
-          </div>
-          <span className="text-gray-800 font-bold text-sm lowercase mr-2">
-            {statusCounts.severeDelays}
-          </span>
-        </div>
-
-        {/* part closure */}
-        <div className="w-full mb-2.5 p-2 rounded-lg flex items-center justify-between bg-neutral-100/80 transition-transform hover:-translate-y-0.5 hover:shadow-lg group cursor-pointer">
-          <div className="flex items-center space-x-3">
-            <div className="flex items-center justify-center bg-orange-200 rounded-full w-7 h-7 mr-1 group-hover:scale-110 transition-transform ml-2">
-              <Construction size={16} className="text-orange-600" />
-            </div>
-            <span className="text-gray-600 font-semibold text-sm lowercase px-6">
-              part closure
-            </span>
-          </div>
-          <span className="text-gray-800 font-bold text-sm lowercase mr-2">
-            {statusCounts.partClosure}
-          </span>
-        </div>
-
-        {/* planned */}
-        <div className="w-full mb-2.5 p-2 rounded-lg flex items-center justify-between bg-neutral-100/80 transition-transform hover:-translate-y-0.5 hover:shadow-lg group cursor-pointer">
-          <div className="flex items-center space-x-3">
-            <div className="flex items-center justify-center bg-blue-200 rounded-full w-7 h-7 mr-1 group-hover:scale-110 transition-transform ml-2">
-              <Hammer size={16} className="text-blue-600" />
-            </div>
-            <span className="text-gray-600 font-semibold text-sm lowercase px-6">
-              planned
-            </span>
-          </div>
-          <span className="text-gray-800 font-bold text-sm lowercase mr-2">
-            {statusCounts.planned}
-          </span>
-        </div>
-
-        {/* suspended */}
-        <div className="w-full mb-2.5 p-2 rounded-lg flex items-center justify-between bg-neutral-100/80 transition-transform hover:-translate-y-0.5 hover:shadow-lg group cursor-pointer">
-          <div className="flex items-center space-x-3">
-            <div className="flex items-center justify-center bg-gray-300 rounded-full w-7 h-7 mr-1 group-hover:scale-110 transition-transform ml-2">
-              <Ban size={16} className="text-gray-700" />
-            </div>
-            <span className="text-gray-600 font-semibold text-sm lowercase px-6">
-              suspended
-            </span>
-          </div>
-          <span className="text-gray-800 font-bold text-sm lowercase mr-2">
-            {statusCounts.suspended}
-          </span>
-        </div>
+          statusCount={statusCounts.goodService}
+          bgColor="bg-green-200"
+        />
+        <StatusCountCardItems
+          icon={<Hourglass size={16} className="text-yellow-600" />}
+          statusType="minor delays"
+          statusCount={statusCounts.minorDelays}
+          bgColor="bg-yellow-200"
+        />
+        <StatusCountCardItems
+          icon={<AlertTriangle size={16} className="text-red-600" />}
+          statusType="severe delays"
+          statusCount={statusCounts.severeDelays}
+          bgColor="bg-red-200"
+        />
+        <StatusCountCardItems
+          icon={<Construction size={16} className="text-orange-600" />}
+          statusType="part closure"
+          statusCount={statusCounts.partClosure}
+          bgColor="bg-orange-200"
+        />
+        <StatusCountCardItems
+          icon={<Hammer size={16} className="text-blue-600" />}
+          statusType="planned"
+          statusCount={statusCounts.planned}
+          bgColor="bg-blue-200"
+        />
+        <StatusCountCardItems
+          icon={<Ban size={16} className="text-gray-700" />}
+          statusType="suspended"
+          statusCount={statusCounts.suspended}
+          bgColor="bg-gray-300"
+        />
       </div>
     </div>
   );
