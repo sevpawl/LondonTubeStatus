@@ -12,8 +12,18 @@ const AlertsCard = (lineColor) => {
     const fetchAlertsCardData = async () => {
       try {
         const data = await fetchTubeStatus();
-        let description = getStatusDescriptions(data);
-        console.log('Alerts array:', description);
+        let initialDescription = getStatusDescriptions(data);
+        console.log('Alerts array:', initialDescription);
+
+        let description;
+        if (initialDescription.length > 0) {
+          description = initialDescription;
+          console.log('alerts found');
+        } else {
+          description = 'good service on all lines';
+          console.log('no alerts found - display ', description);
+        }
+
         setAlertsDescriptions(description);
       } catch (error) {
         console.log('error fetching alerts card data: ', error);
@@ -30,22 +40,14 @@ const AlertsCard = (lineColor) => {
         </span>
       </div>
       <div className="grid gap-3 overflow-y-auto max-h-[200px] bg-neutral-100/80 rounded-lg transition-transform hover:-translate-y-0.5 hover:shadow-lg group cursor-pointer">
-        {description.length > 0 ? (
-          (alertText, position) => (
-            <div
-              key={position}
-              className={`justify-center px-4 py-4 rounded-2xl ${lineColors[lineColor]} text-neutral-600 font-semibold text-sm`}
-            >
-              {alertText}
-            </div>
-          )
-        ) : (
+        {description.map((alertText, position) => (
           <div
-            className={`justify-center px-4 py-4 rounded-2x ${lineColors[lineColor]}  text-neutral-600 font-semibold text-sm`}
+            key={position}
+            className={`justify-center px-4 py-4 rounded-2xl ${lineColors[lineColor]} text-neutral-600 font-semibold text-sm`}
           >
-            good service on all lines
+            {alertText}
           </div>
-        )}
+        ))}
       </div>
     </div>
   );
