@@ -39,7 +39,7 @@ const AlertsCard = (lineColor) => {
           alerts
         </span>
       </div>
-      <div className="grid gap-3 overflow-y-auto max-h-[200px] bg-neutral-100/80 rounded-lg transition-transform hover:-translate-y-0.5 hover:shadow-lg group cursor-pointer">
+      <div className="grid gap-3 overflow-y-auto max-h-[300px] bg-neutral-100/80 rounded-lg transition-transform hover:-translate-y-0.5 hover:shadow-lg group cursor-pointer">
         {description.map((alertText, position) => (
           <div
             key={position}
