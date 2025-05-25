@@ -15,6 +15,14 @@ const LineStatusBadge = ({ onClick, statusType }) => {
     console.log('modal closed');
   };
 
+  const handleLineStatusBadgeClick = () => {
+    if (!showModal) {
+      handleOpenModal();
+    } else {
+      handleCloseModal();
+    }
+  };
+
   return (
     <div className="flex items-center">
       <button
@@ -22,7 +30,7 @@ const LineStatusBadge = ({ onClick, statusType }) => {
         style={{
           boxShadow: 'inset 2px 2px 4px #f8f8f, inset -2px -2px 4px #ffffff',
         }}
-        onClick={handleOpenModal}
+        onClick={handleLineStatusBadgeClick}
       >
         status
       </button>
