@@ -3,7 +3,7 @@ import '../../global.css';
 function Modal({ title, children, showModal, handleCloseModal }) {
   if (showModal == true) {
     return (
-      <div>
+      <div className="fixed flex items-center justify-center">
         <div className="bg-red-500/70 backdrop-blur-sm overflow-hidden border-8 border-white-500 rounded-xl p-4 md:p-6 cursor-default">
           <div className="flex flex-col items-center justify-center">
             <div className="text-xl md:text-2xl font-extrabold text-white mb-4">
