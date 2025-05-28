@@ -1,9 +1,9 @@
-function Modal({ title, children, showModal, handleCloseModal }) {
+function Modal({ title, children, showModal }) {
   if (showModal == true) {
     return (
-      <div className="fixed flex items-center justify-center">
-        <div className="bg-stone-transparent backdrop-blur-sm border-8 border-neutral-100 rounded-xl p-4 md:p-6 cursor-default">
-          <div className="flex flex-col items-center justify-center">
+      <div className="absolute top-full justify-center mt-2 w-64 rounded-lg shadow-lg z-50">
+        <div className="bg-stone-transparent backdrop-blur-sm border-8 border-neutral-100 rounded-xl p-4 md:p-10 cursor-default">
+          <div className="">
             <div className="text-xl md:text-2xl font-extrabold text-white mb-4">
               {title}
             </div>
