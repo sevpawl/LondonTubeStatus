@@ -17,7 +17,17 @@ function fetchTubeStatus(mode = 'tube') {
 
 // process data
 
-// get status severity and description
+// get status severity by line
+
+function getStatusByLine(data) {
+  const lineStatus = data.map((line) =>
+    line.lineStatuses[0].status.toLowerCase(),
+  );
+  console.log('statuses by line:', data);
+  return lineStatus;
+}
+
+// get status description by line
 
 function getStatusDescriptions(data) {
   const x = data.map((line) => line.lineStatuses[0].reason).filter(Boolean);
@@ -38,7 +48,8 @@ function countStatusDisruptions(data) {
   };
 
   data.forEach((line) => {
-    const statusDescription = line.lineStatuses[0].statusSeverityDescription.toLowerCase();
+    const statusDescription =
+      line.lineStatuses[0].statusSeverityDescription.toLowerCase();
 
     if (statusDescription.includes('good service')) {
       statusCounts.goodService++;
@@ -59,7 +70,12 @@ function countStatusDisruptions(data) {
   return statusCounts;
 }
 
-export { fetchTubeStatus, countStatusDisruptions, getStatusDescriptions };
+export {
+  fetchTubeStatus,
+  countStatusDisruptions,
+  getStatusByLine,
+  getStatusDescriptions,
+};
 
 fetchTubeStatus().then((data) => {
   countStatusDisruptions(data);
