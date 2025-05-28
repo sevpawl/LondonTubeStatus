@@ -1,9 +1,11 @@
 import { Modal } from '../RootContainer';
 import '../../global.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { fetchTubeStatus, getStatusByLine } from '../../services/api';
 
-const LineStatusBadge = ({ onClick, statusType, children }) => {
+const LineStatusBadge = ({ lineStatus, children }) => {
   const [showModal, setShowModal] = useState(false);
+  const [badgeDisplay, setBadgeDisplay] = useState();
 
   const handleOpenModal = () => {
     setShowModal(true);
@@ -23,6 +25,20 @@ const LineStatusBadge = ({ onClick, statusType, children }) => {
     }
   };
 
+  useEffect(() => {
+    const setLineStatus = async () => {
+      try {
+        const data = await fetchTubeStatus();
+        const badgeDisplay = getStatusByLine(data);
+        setBadgeDisplay(badgeDisplay);
+      } catch (error) {
+        setBadgeDisplay('unknown');
+        console.log('error fetching line status: ', error);
+      }
+    };
+    setLineStatus();
+  });
+
   return (
     <div className="flex items-center">
       <button
@@ -32,7 +48,7 @@ const LineStatusBadge = ({ onClick, statusType, children }) => {
         }}
         onClick={handleLineStatusBadgeClick}
       >
-        status
+        {badgeDisplay}
       </button>
       <Modal showModal={showModal}>
         {children}
