@@ -15,7 +15,18 @@ const LineStatusTile = ({ title, lineColor }) => {
           </span>
         </div>
         <div className="flex items-center">
-          <LineStatusBadge></LineStatusBadge>
+          <LineStatusBadge>
+            {
+              <a
+                href={`https://tfl.gov.uk/tube/line/${title.toLowerCase()}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 underline text-xs hover:text-gray-800"
+              >
+                view on TfL site
+              </a>
+            }
+          </LineStatusBadge>
         </div>
       </div>
     </div>
