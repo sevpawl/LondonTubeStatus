@@ -9,7 +9,7 @@ import {
   Construction,
   Hourglass,
   Hammer,
-  Loader,
+  Loader2,
 } from 'lucide-react';
 
 const StatsCard = () => {
@@ -50,7 +50,7 @@ const StatsCard = () => {
         {/* loading state management */}
         {isLoading ? (
           <div>
-            <Loader size={56} className="animate-pulse text-amber-300"></Loader>
+            <Loader2 size={42} className="animate-spin text-orange-300 mt-10"></Loader2>
           </div>
         ) : (
           <div>
