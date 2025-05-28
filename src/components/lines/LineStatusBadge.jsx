@@ -34,7 +34,14 @@ const LineStatusBadge = ({ onClick, statusType }) => {
       >
         status
       </button>
-      <Modal showModal={showModal}></Modal>
+      <Modal showModal={showModal}>
+      <button
+              onClick={handleCloseModal}
+              className="md:mt-4 px-4 py-1.5 bg-neutral-100/70 text-gray-600 font-extrabold text-small cursor-pointer border-w4 border-neutral-100 hover:shadow-[2px_2px_4px_#b8b8b8,-2px_-2px_4px_#ffffff] active:shadow-[inset_1px_1px_2px_#b8b8b8,inset_-1px_-1px_2px_#ffffff] transition-all duration-500 bg-stone-transparent backdrop-blur-sm rounded-lg"
+            >
+              close
+            </button>
+      </Modal>
     </div>
   );
 };
