@@ -1,9 +1,16 @@
 import '../../global.css';
 import { fetchTubeStatus, countStatusDisruptions } from '../../services/api';
 import { useState, useEffect } from 'react';
-import { statusColors } from '../../utils/Colors';
 import StatusCountCardItems from './StatusCountCardItems';
-import { AlertTriangle, Ban, ThumbsUp, Construction, Hourglass, Hammer } from 'lucide-react';
+import {
+  AlertTriangle,
+  Ban,
+  ThumbsUp,
+  Construction,
+  Hourglass,
+  Hammer,
+  Loader,
+} from 'lucide-react';
 
 const StatsCard = () => {
   const [statusCounts, setStatusCounts] = useState({
@@ -14,7 +21,9 @@ const StatsCard = () => {
     planned: 0,
     suspended: 0,
   });
+  const [isLoading, setIsLoading] = useState(true);
 
+  // fetch data
   useEffect(() => {
     const fetchStatsCardData = async () => {
       try {
@@ -25,7 +34,8 @@ const StatsCard = () => {
         console.log('error fetching status counts: ', error);
       }
     };
-
+    // loading
+    setIsLoading(true);
     fetchStatsCardData();
   }, []);
 
@@ -37,42 +47,51 @@ const StatsCard = () => {
         </span>
       </div>
       <div className="w-full max-w-md flex flex-col items-center">
-        <StatusCountCardItems
-          icon={<ThumbsUp size={16} className="text-green-600" />}
-          statusType="good service"
-          statusCount={statusCounts.goodService}
-          bgColor="bg-green-200"
-        />
-        <StatusCountCardItems
-          icon={<Hourglass size={16} className="text-yellow-600" />}
-          statusType="minor delays"
-          statusCount={statusCounts.minorDelays}
-          bgColor="bg-yellow-200"
-        />
-        <StatusCountCardItems
-          icon={<AlertTriangle size={16} className="text-red-600" />}
-          statusType="severe delays"
-          statusCount={statusCounts.severeDelays}
-          bgColor="bg-red-200"
-        />
-        <StatusCountCardItems
-          icon={<Construction size={16} className="text-orange-600" />}
-          statusType="part closure"
-          statusCount={statusCounts.partClosure}
-          bgColor="bg-orange-200"
-        />
-        <StatusCountCardItems
-          icon={<Hammer size={16} className="text-blue-600" />}
-          statusType="planned"
-          statusCount={statusCounts.planned}
-          bgColor="bg-blue-200"
-        />
-        <StatusCountCardItems
-          icon={<Ban size={16} className="text-gray-700" />}
-          statusType="suspended"
-          statusCount={statusCounts.suspended}
-          bgColor="bg-gray-300"
-        />
+        {/* loading state management */}
+        {isLoading ? (
+          <div>
+            <Loader size={56} className="animate-pulse text-amber-300"></Loader>
+          </div>
+        ) : (
+          <div>
+            <StatusCountCardItems
+              icon={<ThumbsUp size={16} className="text-green-600" />}
+              statusType="good service"
+              statusCount={statusCounts.goodService}
+              bgColor="bg-green-200"
+            />
+            <StatusCountCardItems
+              icon={<Hourglass size={16} className="text-yellow-600" />}
+              statusType="minor delays"
+              statusCount={statusCounts.minorDelays}
+              bgColor="bg-yellow-200"
+            />
+            <StatusCountCardItems
+              icon={<AlertTriangle size={16} className="text-red-600" />}
+              statusType="severe delays"
+              statusCount={statusCounts.severeDelays}
+              bgColor="bg-red-200"
+            />
+            <StatusCountCardItems
+              icon={<Construction size={16} className="text-orange-600" />}
+              statusType="part closure"
+              statusCount={statusCounts.partClosure}
+              bgColor="bg-orange-200"
+            />
+            <StatusCountCardItems
+              icon={<Hammer size={16} className="text-blue-600" />}
+              statusType="planned"
+              statusCount={statusCounts.planned}
+              bgColor="bg-blue-200"
+            />
+            <StatusCountCardItems
+              icon={<Ban size={16} className="text-gray-700" />}
+              statusType="suspended"
+              statusCount={statusCounts.suspended}
+              bgColor="bg-gray-300"
+            />
+          </div>
+        )}
       </div>
     </div>
   );
