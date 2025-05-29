@@ -7,7 +7,6 @@ function fetchTubeStatus(mode = 'tube') {
   return fetch(fullUrl)
     .then((response) => response.json())
     .then((data) => {
-      console.log('fetch tube status success: ', data);
       return data;
     })
     .catch((error) => {
@@ -26,7 +25,6 @@ function getStatusByLine(data) {
     }
     return 'unknown';
   });
-  console.log('statuses by line:', data);
   return lineStatus;
 }
 
@@ -34,7 +32,6 @@ function getStatusByLine(data) {
 
 function getStatusDescriptions(data) {
   const x = data.map((line) => line.lineStatuses[0].reason).filter(Boolean);
-  console.log('status descriptions:', x);
   return x;
 }
 
@@ -69,7 +66,6 @@ function countStatusDisruptions(data) {
     }
   });
 
-  console.log('status counts: ', statusCounts);
   return statusCounts;
 }
 
@@ -79,8 +75,3 @@ export {
   getStatusByLine,
   getStatusDescriptions,
 };
-
-fetchTubeStatus().then((data) => {
-  countStatusDisruptions(data);
-  getStatusDescriptions(data);
-});
