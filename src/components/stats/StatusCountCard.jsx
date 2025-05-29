@@ -30,12 +30,12 @@ const StatsCard = () => {
         const data = await fetchTubeStatus();
         const counts = countStatusDisruptions(data);
         setStatusCounts(counts);
+        setIsLoading(false);
       } catch (error) {
         console.log('error fetching status counts: ', error);
+        setIsLoading(false);
       }
     };
-    // loading
-    setIsLoading(true);
     fetchStatsCardData();
   }, []);
 
