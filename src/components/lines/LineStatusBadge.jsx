@@ -2,8 +2,9 @@ import { Modal } from '../RootContainer';
 import '../../global.css';
 import { useState, useEffect } from 'react';
 import { fetchTubeStatus, getStatusByLine } from '../../services/api';
+import { statusColors } from '../../utils/Colors';
 
-const LineStatusBadge = ({ lineStatus, children }) => {
+const LineStatusBadge = ({ statusColor, children }) => {
   const [showModal, setShowModal] = useState(false);
   const [badgeDisplay, setBadgeDisplay] = useState();
 
