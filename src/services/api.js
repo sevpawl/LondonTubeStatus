@@ -65,7 +65,7 @@ function countStatusDisruptions(data) {
       statusCounts.suspended++;
     }
   });
-
+  console.log('disruption counts: ', statusCounts);
   return statusCounts;
 }
 
