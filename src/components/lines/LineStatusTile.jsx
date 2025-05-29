@@ -18,7 +18,7 @@ const LineStatusTile = ({ title, lineColor }) => {
           <LineStatusBadge>
             {
               <a
-                href={`https://tfl.gov.uk/tube/line/${title.toLowerCase()}`}
+                href={`https://tfl.gov.uk/tube/route/${title.toLowerCase()}/`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-600 underline text-xs hover:text-gray-800"
