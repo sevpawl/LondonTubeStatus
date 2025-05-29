@@ -7,7 +7,7 @@ function fetchTubeStatus(mode = 'tube') {
   return fetch(fullUrl)
     .then((response) => response.json())
     .then((data) => {
-      console.log('fecth tube status success: ', data);
+      console.log('fetch tube status success: ', data);
       return data;
     })
     .catch((error) => {
@@ -20,9 +20,12 @@ function fetchTubeStatus(mode = 'tube') {
 // get status severity by line
 
 function getStatusByLine(data) {
-  const lineStatus = data.map((line) =>
-    line.lineStatuses[0].status.toLowerCase(),
-  );
+  const lineStatus = data.map((line) => {
+    if (line.lineStatuses && line.lineStatuses.length > 0) {
+      return line.lineStatuses[0].reason;
+    }
+    return 'unknown';
+  });
   console.log('statuses by line:', data);
   return lineStatus;
 }
