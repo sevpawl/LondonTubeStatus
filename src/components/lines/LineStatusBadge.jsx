@@ -6,7 +6,7 @@ import { statusColors } from '../../utils/Colors';
 
 const LineStatusBadge = ({ statusColor, children }) => {
   const [showModal, setShowModal] = useState(false);
-  const [badgeDisplay, setBadgeDisplay] = useState();
+  const [badgeDisplay, setBadgeDisplay] = useState('?');
 
   const handleOpenModal = () => {
     setShowModal(true);
@@ -27,17 +27,17 @@ const LineStatusBadge = ({ statusColor, children }) => {
   };
 
   useEffect(() => {
-    const setLineStatus = async () => {
-      try {
-        const data = await fetchTubeStatus();
-        const badgeDisplay = getStatusByLine(data);
-        setBadgeDisplay(badgeDisplay);
-      } catch (error) {
-        setBadgeDisplay('unknown');
-        console.log('error fetching line status: ', error);
-      }
-    };
-    setLineStatus();
+    // const setLineStatus = async () => {
+    //   try {
+    //     const data = await fetchTubeStatus();
+    //     const badgeDisplay = getStatusByLine(data);
+    //     setBadgeDisplay(badgeDisplay);
+    //   } catch (error) {
+    //     setBadgeDisplay('unknown');
+    //     console.log('error fetching line status: ', error);
+    //   }
+    // };
+    // setLineStatus();
   }, []);
 
   return (
