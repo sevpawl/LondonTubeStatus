@@ -9,15 +9,11 @@ const Header = () => {
 
   useEffect(() => {
     setCurrentTime(getCurrentTime());
-    console.log('current time: ', currentTime);
   }, []);
 
   const HandleRefresh = () => {
-    console.log('about to reload page');
     window.location.reload();
-    console.log('page reloaded');
     setCurrentTime(getCurrentTime());
-    console.log(currentTime ? 'current time: ' + currentTime : 'null');
   };
 
   return (
