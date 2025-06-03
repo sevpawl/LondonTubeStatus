@@ -21,9 +21,9 @@ const LineStatusTile = ({ title, lineColor }) => {
                 href={`https://tfl.gov.uk/tube/route/${title.toLowerCase()}/`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-600 underline text-xs hover:text-gray-800"
+                className="text-gray-600 text-xs hover:text-gray-800"
               >
-                view on TfL site
+                view on TfL site → 
               </a>
             }
           </LineStatusBadge>
