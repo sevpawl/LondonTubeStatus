@@ -10,12 +10,10 @@ const LineStatusBadge = ({ statusColor, children }) => {
 
   const handleOpenModal = () => {
     setShowModal(true);
-    console.log('modal opened');
   };
 
   const handleCloseModal = () => {
     setShowModal(false);
-    console.log('modal closed');
   };
 
   const handleLineStatusBadgeClick = () => {
