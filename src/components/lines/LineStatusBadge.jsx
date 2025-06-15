@@ -2,11 +2,10 @@ import { Modal } from '../RootContainer';
 import '../../global.css';
 import { useState, useEffect } from 'react';
 import { fetchTubeStatus, getStatusByLine } from '../../services/api';
-import { statusColors } from '../../utils/Colors';
+import { statusMap } from '../../utils/Colors';
 
 const LineStatusBadge = ({ statusColor, children }) => {
   const [showModal, setShowModal] = useState(false);
-  const [badgeDisplay, setBadgeDisplay] = useState('?');
 
   const handleOpenModal = () => {
     setShowModal(true);
@@ -24,19 +23,19 @@ const LineStatusBadge = ({ statusColor, children }) => {
     }
   };
 
-  useEffect(() => {
-    // const setLineStatus = async () => {
-    //   try {
-    //     const data = await fetchTubeStatus();
-    //     const badgeDisplay = getStatusByLine(data);
-    //     setBadgeDisplay(badgeDisplay);
-    //   } catch (error) {
-    //     setBadgeDisplay('unknown');
-    //     console.log('error fetching line status: ', error);
-    //   }
-    // };
-    // setLineStatus();
-  }, []);
+  // useEffect(() => {
+  // const setLineStatus = async () => {
+  //   try {
+  //     const data = await fetchTubeStatus();
+  //     const badgeDisplay = getStatusByLine(data);
+  //     setBadgeDisplay(badgeDisplay);
+  //   } catch (error) {
+  //     setBadgeDisplay('unknown');
+  //     console.log('error fetching line status: ', error);
+  //   }
+  // };
+  // setLineStatus();
+  // }, []);
 
   return (
     <div className="flex items-center">
@@ -47,7 +46,7 @@ const LineStatusBadge = ({ statusColor, children }) => {
         }}
         onClick={handleLineStatusBadgeClick}
       >
-        {badgeDisplay}
+        {/* {badgeDisplay} */}
       </button>
       <Modal showModal={showModal}>
         {children}
