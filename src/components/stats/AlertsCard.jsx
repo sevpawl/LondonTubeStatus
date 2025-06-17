@@ -7,7 +7,6 @@ const AlertsCard = (lineColor) => {
   const [description, setAlertsDescriptions] = useState([]);
 
   useEffect(() => {
-    console.log('AlertsCard loaded');
 
     const fetchAlertsCardData = async () => {
       try {
