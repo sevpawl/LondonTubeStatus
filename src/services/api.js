@@ -1,17 +1,18 @@
-function fetchTubeStatus(mode = 'tube') {
-  const BASE_URL = 'https://api.tfl.gov.uk';
-  const queryParams = '?detail=true';
-  const endpoint = `/Line/Mode/${mode}/Status`;
-  const fullUrl = `${BASE_URL}${endpoint}${queryParams}`;
+const BASE_URL = 'https://api.tfl.gov.uk';
 
-  return fetch(fullUrl)
-    .then((response) => response.json())
-    .then((data) => {
-      return data;
-    })
-    .catch((error) => {
-      console.log('error: ', error);
-    });
+// fetch status for all lines
+async function fetchTubeStatus(mode = 'tube') {
+  const fullUrl = `${BASE_URL}/Line/Mode/${mode}/Status?detail=true`;
+  try {
+    const response = await fetch(fullUrl);
+    const data = response.json();
+    console.log(data);
+    return data;
+  }
+  catch (error) {
+    console.log('error fetching status for all lines: ', error);
+    console.log ( wgw)
+  }
 }
 
 // process data
