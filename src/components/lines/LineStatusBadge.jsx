@@ -1,61 +1,98 @@
 import { Modal } from '../RootContainer';
 import '../../global.css';
-import { useState, useEffect } from 'react';
-import { fetchTubeStatus, getStatusByLine } from '../../services/api';
+import { useState, useEffect, useRef } from 'react';
 import { statusMap } from '../../utils/Colors';
 
-const LineStatusBadge = ({ statusColor, children }) => {
+const LineStatusBadge = ({
+  status,
+  statusSeverity,
+  statusReason,
+  isLoading,
+  children,
+}) => {
   const [showModal, setShowModal] = useState(false);
 
   const handleOpenModal = () => {
     setShowModal(true);
   };
 
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
-
   const handleLineStatusBadgeClick = () => {
     if (!showModal) {
       handleOpenModal();
     } else {
-      handleCloseModal();
+      // handleOutsideClickCloseModal;
     }
   };
 
-  // useEffect(() => {
-  // const setLineStatus = async () => {
-  //   try {
-  //     const data = await fetchTubeStatus();
-  //     const badgeDisplay = getStatusByLine(data);
-  //     setBadgeDisplay(badgeDisplay);
-  //   } catch (error) {
-  //     setBadgeDisplay('unknown');
-  //     console.log('error fetching line status: ', error);
-  //   }
-  // };
-  // setLineStatus();
-  // }, []);
+  // outside click close is handled by Modal's backdrop onClick
+
+  // determine badge color / icon
+  const statusKey = status ? status.toLowerCase() : 'unknown';
+  const statusInfo = statusMap[statusKey] || {
+    bgColor: 'bg-gray-200',
+    icon: null,
+    iconColor: 'text-gray-600',
+  };
 
   return (
     <div className="flex items-center">
       <button
-        className={` text-gray-600 text-small shadow-[4px_4px_8px_#b8b8b8,-4px_-4px_8px_#ffffff] hover:shadow-[2px_2px_4px_#b8b8b8,-2px_-2px_4px_#ffffff] active:shadow-[inset_2px_2px_4px_#b8b8b8,inset_-2px_-2px_4px_#ffffff] transition-all duration-500 backdrop-blur-sm rounded-lg px-2 py-0.5 ml-2 mr-2 bg-neutral-200 text-sm font-medium cursor-pointer`}
+        className={`text-gray-600 text-small shadow-[4px_4px_8px_#b8b8b8,-4px_-4px_8px_#ffffff] hover:shadow-[2px_2px_4px_#b8b8b8,-2px_-2px_4px_#ffffff] active:shadow-[inset_2px_2px_4px_#b8b8b8,inset_-2px_-2px_4px_#ffffff] transition-all duration-500 backdrop-blur-sm rounded-lg px-2 py-0.5 ml-2 mr-2 bg-neutral-200 text-sm font-medium cursor-pointer ${statusInfo.bgColor}`}
         style={{
           boxShadow: 'inset 2px 2px 4px #f8f8f, inset -2px -2px 4px #ffffff',
         }}
         onClick={handleLineStatusBadgeClick}
+        disabled={isLoading}
       >
-        {/* {badgeDisplay} */}
+        {isLoading ? (
+          <span className="animate-pulse text-gray-400">...</span>
+        ) : (
+          <span className="flex items-center gap-1">
+            {statusInfo.icon && (
+              <statusInfo.icon size={14} className={statusInfo.iconColor} />
+            )}
+            {status || 'unknown'}
+          </span>
+        )}
       </button>
-      <Modal showModal={showModal}>
-        {children}
-        <button
-          onClick={handleCloseModal}
-          className="text-gray-600 text-small shadow-[4px_4px_8px_#b8b8b8,-4px_-4px_8px_#ffffff] hover:shadow-[2px_2px_4px_#b8b8b8,-2px_-2px_4px_#ffffff] active:shadow-[inset_2px_2px_4px_#b8b8b8,inset_-2px_-2px_4px_#ffffff] transition-all duration-500 backdrop-blur-sm rounded-lg px-2 py-0.5 ml-2 mr-2 bg-neutral-200 text-sm font-medium cursor-pointer"
+      <Modal
+        showModal={showModal}
+        title={null}
+        onClose={() => setShowModal(false)}
+      >
+        <div
+          className={`flex flex-col items-center gap-4 p-4 rounded-xl ${statusInfo.bgColor} bg-opacity-80`}
         >
-          close
-        </button>
+          <div className="flex flex-col items-center gap-2">
+            {statusInfo.icon && (
+              <statusInfo.icon
+                size={32}
+                className={statusInfo.iconColor + ' mb-1'}
+              />
+            )}
+            <div className="text-xl font-bold capitalize text-gray-800">
+              {status || 'unknown'}
+            </div>
+            {statusSeverity && (
+              <div className="text-sm text-gray-700">
+                <b>Severity:</b> {statusSeverity}
+              </div>
+            )}
+            {statusReason && (
+              <div className="text-sm text-gray-700 text-center max-w-xs">
+                <b>Reason:</b> {statusReason}
+              </div>
+            )}
+          </div>
+          <div className="w-full border-t border-gray-300 my-2"></div>
+          <div className="mt-2">{children}</div>
+          {/* <button
+            onClick={handleCloseModal}
+            className="text-gray-600 text-small shadow-[4px_4px_8px_#b8b8b8,-4px_-4px_8px_#ffffff] hover:shadow-[2px_2px_4px_#b8b8b8,-2px_-2px_4px_#ffffff] active:shadow-[inset_2px_2px_4px_#b8b8b8,inset_-2px_-2px_4px_#ffffff] transition-all duration-500 backdrop-blur-sm rounded-lg px-2 py-0.5 ml-2 mr-2 bg-neutral-200 text-sm font-medium cursor-pointer mt-2"
+          >
+            close
+          </button> */}
+        </div>
       </Modal>
     </div>
   );
