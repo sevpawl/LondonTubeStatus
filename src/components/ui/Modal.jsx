@@ -1,7 +1,7 @@
 function Modal({ title, children, showModal }) {
   if (showModal == true) {
     return (
-      <div className="absolute top-full justify-center mt-2 w-64 rounded-lg shadow-lg z-50">
+      <div className="inset-0 fixed bg-black/5 backdrop-blur-sm z-[1000]">
         <div className="bg-stone-transparent backdrop-blur-sm border-8 border-neutral-100 rounded-xl p-4 md:p-10 cursor-default">
           <div className="">
             <div className="text-xl md:text-2xl font-extrabold text-white mb-4">
