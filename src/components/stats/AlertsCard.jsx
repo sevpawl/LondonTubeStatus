@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchTubeStatus, getStatusDescriptions } from '../../services/api';
-import { lineColors } from '../../utils/Colors';
+import { lineColors } from '../../utils/constants';
 import '../../global.css';
 
 const AlertsCard = (lineColor) => {

@@ -26,9 +26,9 @@ const LineStatusBadge = ({
 
   // outside click close is handled by Modal's backdrop onClick
 
-  // determine badge color / icon
-  const statusKey = status ? status.toLowerCase() : 'unknown';
-  const statusInfo = statusMap[statusKey] || {
+  // determine badge color / icon using numeric severity code
+  const statusInfo = statusMap[statusSeverity] || {
+    name: 'Unknown',
     bgColor: 'bg-gray-200',
     icon: null,
     iconColor: 'text-gray-600',
@@ -51,7 +51,7 @@ const LineStatusBadge = ({
             {statusInfo.icon && (
               <statusInfo.icon size={14} className={statusInfo.iconColor} />
             )}
-            {status || 'unknown'}
+            {statusInfo.name || 'Unknown'}
           </span>
         )}
       </button>
@@ -70,8 +70,8 @@ const LineStatusBadge = ({
                 className={statusInfo.iconColor + ' mb-1'}
               />
             )}
-            <div className="text-xl font-bold capitalize text-gray-800">
-              {status || 'unknown'}
+            <div className="text-xl font-bold text-gray-800">
+              {statusInfo.name || 'Unknown'}
             </div>
             {statusSeverity && (
               <div className="text-sm text-gray-700">

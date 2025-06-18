@@ -38,134 +38,134 @@ const lineColors = {
   waterlooCity: 'bg-[#99d1bf]',
 };
 
-// status map to combine status type by number, color, icon, icon color
+// status map keyed by TfL API severity codes (0-20)
 
 const statusMap = {
-  'special service': {
+  0: {
+    name: 'Special Service',
     bgColor: 'bg-purple-200',
     icon: Clock,
     iconColor: 'text-purple-600',
-    statusLevel: 0,
   },
-  closed: {
+  1: {
+    name: 'Closed',
     bgColor: 'bg-gray-300',
     icon: Ban,
     iconColor: 'text-gray-700',
-    statusLevel: 1,
   },
-  suspended: {
+  2: {
+    name: 'Suspended',
     bgColor: 'bg-gray-300',
     icon: Ban,
     iconColor: 'text-gray-700',
-    statusLevel: 2,
   },
-  'part suspended': {
+  3: {
+    name: 'Part Suspended',
     bgColor: 'bg-gray-300',
     icon: Ban,
     iconColor: 'text-gray-700',
-    statusLevel: 3,
   },
-  'planned closure': {
+  4: {
+    name: 'Planned Closure',
     bgColor: 'bg-blue-200',
     icon: Hammer,
     iconColor: 'text-blue-600',
-    statusLevel: 4,
   },
-  'part closure': {
+  5: {
+    name: 'Part Closure',
     bgColor: 'bg-orange-200',
     icon: Construction,
     iconColor: 'text-orange-600',
-    statusLevel: 5,
   },
-  'severe delays': {
+  6: {
+    name: 'Severe Delays',
     bgColor: 'bg-red-200',
     icon: AlertTriangle,
     iconColor: 'text-red-600',
-    statusLevel: 6,
   },
-  'reduced service': {
+  7: {
+    name: 'Reduced Service',
     bgColor: 'bg-yellow-200',
     icon: Hourglass,
     iconColor: 'text-yellow-600',
-    statusLevel: 7,
   },
-  'bus service': {
+  8: {
+    name: 'Bus Service',
     bgColor: 'bg-yellow-200',
     icon: Bus,
     iconColor: 'text-yellow-600',
-    statusLevel: 8,
   },
-  'minor delays': {
+  9: {
+    name: 'Minor Delays',
     bgColor: 'bg-yellow-200',
     icon: Hourglass,
     iconColor: 'text-yellow-600',
-    statusLevel: 9,
   },
-  'good service': {
+  10: {
+    name: 'Good Service',
     bgColor: 'bg-green-200',
     icon: ThumbsUp,
     iconColor: 'text-green-600',
-    statusLevel: 10,
   },
-  'part closed': {
+  11: {
+    name: 'Part Closed',
     bgColor: 'bg-orange-200',
     icon: Construction,
     iconColor: 'text-orange-600',
-    statusLevel: 11,
   },
-  'exit only': {
+  12: {
+    name: 'Exit Only',
     bgColor: 'bg-blue-200',
     icon: Hammer,
     iconColor: 'text-blue-600',
-    statusLevel: 12,
   },
-  'no step free access': {
+  13: {
+    name: 'No Step Free Access',
     bgColor: 'bg-gray-300',
     icon: Ban,
     iconColor: 'text-gray-700',
-    statusLevel: 13,
   },
-  'change of frequency': {
+  14: {
+    name: 'Change of Frequency',
     bgColor: 'bg-gray-300',
     icon: Hammer,
     iconColor: 'text-gray-700',
-    statusLevel: 14,
   },
-  diverted: {
+  15: {
+    name: 'Diverted',
     bgColor: 'bg-gray-300',
     icon: Hammer,
     iconColor: 'text-gray-700',
-    statusLevel: 15,
   },
-  'not running': {
+  16: {
+    name: 'Not Running',
     bgColor: 'bg-gray-300',
     icon: Hammer,
     iconColor: 'text-gray-700',
-    statusLevel: 16,
   },
-  'issues reported': {
+  17: {
+    name: 'Issues Reported',
     bgColor: 'bg-gray-300',
     icon: Hammer,
     iconColor: 'text-gray-700',
-    statusLevel: 17,
   },
-  'no issues': {
+  18: {
+    name: 'No Issues',
     bgColor: 'bg-green-200',
     icon: ThumbsUp,
     iconColor: 'text-green-600',
-    statusLevel: 18,
   },
-  information: {
+  19: {
+    name: 'Information',
     bgColor: 'bg-blue-200',
     icon: Hammer,
     iconColor: 'text-blue-600',
-    statusLevel: 19,
   },
-  'service closed': {
+  20: {
+    name: 'Service Closed',
     bgColor: 'bg-gray-300',
     icon: Ban,
     iconColor: 'text-gray-700',
-    statusLevel: 20,
   },
 };
 
