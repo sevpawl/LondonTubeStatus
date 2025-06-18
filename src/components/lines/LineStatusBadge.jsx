@@ -1,7 +1,7 @@
 import { Modal } from '../RootContainer';
 import '../../global.css';
 import { useState, useEffect, useRef } from 'react';
-import { statusMap } from '../../utils/Colors';
+import { statusMap } from '../../utils/constants';
 
 const LineStatusBadge = ({
   status,
