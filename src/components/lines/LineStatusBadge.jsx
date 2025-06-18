@@ -1,10 +1,9 @@
 import { Modal } from '../RootContainer';
 import '../../global.css';
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { statusMap } from '../../utils/constants';
 
 const LineStatusBadge = ({
-  status,
   statusSeverity,
   statusReason,
   isLoading,
@@ -12,23 +11,15 @@ const LineStatusBadge = ({
 }) => {
   const [showModal, setShowModal] = useState(false);
 
-  const handleOpenModal = () => {
-    setShowModal(true);
-  };
-
   const handleLineStatusBadgeClick = () => {
-    if (!showModal) {
-      handleOpenModal();
-    } else {
-      // handleOutsideClickCloseModal;
-    }
+    setShowModal(!showModal);
   };
 
   // outside click close is handled by Modal's backdrop onClick
 
   // determine badge color / icon using numeric severity code
   const statusInfo = statusMap[statusSeverity] || {
-    name: 'Unknown',
+    name: '?',
     bgColor: 'bg-gray-200',
     icon: null,
     iconColor: 'text-gray-600',
@@ -51,7 +42,7 @@ const LineStatusBadge = ({
             {statusInfo.icon && (
               <statusInfo.icon size={14} className={statusInfo.iconColor} />
             )}
-            {statusInfo.name || 'Unknown'}
+            {statusInfo.name || 'status unknown'}
           </span>
         )}
       </button>
@@ -71,16 +62,11 @@ const LineStatusBadge = ({
               />
             )}
             <div className="text-xl font-bold text-gray-800">
-              {statusInfo.name || 'Unknown'}
+              {statusInfo.name || 'status unknown'}
             </div>
-            {statusSeverity && (
-              <div className="text-sm text-gray-700">
-                <b>Severity:</b> {statusSeverity}
-              </div>
-            )}
             {statusReason && (
               <div className="text-sm text-gray-700 text-center max-w-xs">
-                <b>Reason:</b> {statusReason}
+                <b>reason:</b> {statusReason}
               </div>
             )}
           </div>
