@@ -1,13 +1,23 @@
 import '../../global.css';
 import { useState } from 'react';
 import StatusCountCardItems from './StatusCountCardItems';
-import { statusMap } from '../../utils/Colors';
+import { statusMap } from '../../utils/constants';
 import { Modal } from '../RootContainer';
 
 const StatsCard = ({ linesData = [] }) => {
   const [modalStatus, setModalStatus] = useState(null);
 
-  // count status disruptions
+  // severity code mappings for each status category
+  const severityCodes = {
+    goodService: 10,
+    minorDelays: 9,
+    severeDelays: 6,
+    partClosure: 5,
+    planned: 4,
+    suspended: 2,
+  };
+
+  // count status disruptions by severity code
   const statusCounts = {
     goodService: 0,
     minorDelays: 0,
@@ -18,37 +28,34 @@ const StatsCard = ({ linesData = [] }) => {
   };
 
   linesData.forEach((line) => {
-    const status =
-      line.lineStatuses?.[0]?.statusSeverityDescription?.toLowerCase() ||
-      'unknown';
-    if (status.includes('good service')) statusCounts.goodService++;
-    else if (status.includes('minor delays')) statusCounts.minorDelays++;
-    else if (status.includes('severe delays')) statusCounts.severeDelays++;
-    else if (status.includes('part closure')) statusCounts.partClosure++;
-    else if (status.includes('planned')) statusCounts.planned++;
-    else if (status.includes('suspended')) statusCounts.suspended++;
+    const severityCode = line.lineStatuses?.[0]?.statusSeverity;
+    if (severityCode === 10) statusCounts.goodService++;
+    else if (severityCode === 9) statusCounts.minorDelays++;
+    else if (severityCode === 6) statusCounts.severeDelays++;
+    else if (severityCode === 5 || severityCode === 11) statusCounts.partClosure++;
+    else if (severityCode === 4) statusCounts.planned++;
+    else if (severityCode === 2) statusCounts.suspended++;
   });
 
-  // get lines for a status
-  const getLinesForStatus = (statusKey) =>
+  // get lines for a severity code
+  const getLinesForSeverity = (severityCode) =>
     linesData.filter(
       (line) =>
         line.lineStatuses &&
         line.lineStatuses[0] &&
-        line.lineStatuses[0].statusSeverityDescription
-          ?.toLowerCase()
-          .includes(statusKey),
+        line.lineStatuses[0].statusSeverity === severityCode,
     );
 
   // modal content
   const renderModal = () => {
     if (!modalStatus) return null;
     const statusInfo = statusMap[modalStatus] || {
+      name: 'Unknown',
       bgColor: 'bg-gray-200',
       icon: null,
       iconColor: 'text-gray-600',
     };
-    const lines = getLinesForStatus(modalStatus);
+    const lines = getLinesForSeverity(modalStatus);
     return (
       <Modal showModal={!!modalStatus} title={null}>
         <div
@@ -61,8 +68,8 @@ const StatsCard = ({ linesData = [] }) => {
                 className={statusInfo.iconColor + ' mb-1'}
               />
             )}
-            <div className="text-xl font-bold capitalize text-gray-800">
-              {modalStatus.replace(/([a-z])([A-Z])/g, '$1 $2')}
+            <div className="text-xl font-bold text-gray-800">
+              {statusInfo.name}
             </div>
             <div className="text-sm text-gray-700">
               {lines.length} line(s) affected
@@ -104,13 +111,13 @@ const StatsCard = ({ linesData = [] }) => {
     );
   };
 
-  // icons
-  const GoodServiceIcon = statusMap['good service'].icon;
-  const MinorDelaysIcon = statusMap['minor delays'].icon;
-  const SevereDelaysIcon = statusMap['severe delays'].icon;
-  const PartClosureIcon = statusMap['part closure'].icon;
-  const PlannedIcon = statusMap['planned'].icon;
-  const SuspendedIcon = statusMap['suspended'].icon;
+  // get status info using severity codes
+  const goodServiceInfo = statusMap[severityCodes.goodService];
+  const minorDelaysInfo = statusMap[severityCodes.minorDelays];
+  const severeDelaysInfo = statusMap[severityCodes.severeDelays];
+  const partClosureInfo = statusMap[severityCodes.partClosure];
+  const plannedInfo = statusMap[severityCodes.planned];
+  const suspendedInfo = statusMap[severityCodes.suspended];
 
   return (
     <div className="flex flex-col h-full w-full items-center justify-center px-4 py-4 cursor-default">
@@ -122,87 +129,87 @@ const StatsCard = ({ linesData = [] }) => {
       <div className="w-full max-w-md flex flex-col items-center">
         <StatusCountCardItems
           icon={
-            GoodServiceIcon ? (
-              <GoodServiceIcon
+            goodServiceInfo.icon ? (
+              <goodServiceInfo.icon
                 size={16}
-                className={statusMap['good service'].iconColor}
+                className={goodServiceInfo.iconColor}
               />
             ) : null
           }
-          statusType="good service"
+          statusType={goodServiceInfo.name}
           statusCount={statusCounts.goodService}
-          bgColor={statusMap['good service'].bgColor}
-          onClick={() => setModalStatus('good service')}
+          bgColor={goodServiceInfo.bgColor}
+          onClick={() => setModalStatus(severityCodes.goodService)}
         />
         <StatusCountCardItems
           icon={
-            MinorDelaysIcon ? (
-              <MinorDelaysIcon
+            minorDelaysInfo.icon ? (
+              <minorDelaysInfo.icon
                 size={16}
-                className={statusMap['minor delays'].iconColor}
+                className={minorDelaysInfo.iconColor}
               />
             ) : null
           }
-          statusType="minor delays"
+          statusType={minorDelaysInfo.name}
           statusCount={statusCounts.minorDelays}
-          bgColor={statusMap['minor delays'].bgColor}
-          onClick={() => setModalStatus('minor delays')}
+          bgColor={minorDelaysInfo.bgColor}
+          onClick={() => setModalStatus(severityCodes.minorDelays)}
         />
         <StatusCountCardItems
           icon={
-            SevereDelaysIcon ? (
-              <SevereDelaysIcon
+            severeDelaysInfo.icon ? (
+              <severeDelaysInfo.icon
                 size={16}
-                className={statusMap['severe delays'].iconColor}
+                className={severeDelaysInfo.iconColor}
               />
             ) : null
           }
-          statusType="severe delays"
+          statusType={severeDelaysInfo.name}
           statusCount={statusCounts.severeDelays}
-          bgColor={statusMap['severe delays'].bgColor}
-          onClick={() => setModalStatus('severe delays')}
+          bgColor={severeDelaysInfo.bgColor}
+          onClick={() => setModalStatus(severityCodes.severeDelays)}
         />
         <StatusCountCardItems
           icon={
-            PartClosureIcon ? (
-              <PartClosureIcon
+            partClosureInfo.icon ? (
+              <partClosureInfo.icon
                 size={16}
-                className={statusMap['part closure'].iconColor}
+                className={partClosureInfo.iconColor}
               />
             ) : null
           }
-          statusType="part closure"
+          statusType={partClosureInfo.name}
           statusCount={statusCounts.partClosure}
-          bgColor={statusMap['part closure'].bgColor}
-          onClick={() => setModalStatus('part closure')}
+          bgColor={partClosureInfo.bgColor}
+          onClick={() => setModalStatus(severityCodes.partClosure)}
         />
         <StatusCountCardItems
           icon={
-            PlannedIcon ? (
-              <PlannedIcon
+            plannedInfo.icon ? (
+              <plannedInfo.icon
                 size={16}
-                className={statusMap['planned'].iconColor}
+                className={plannedInfo.iconColor}
               />
             ) : null
           }
-          statusType="planned"
+          statusType={plannedInfo.name}
           statusCount={statusCounts.planned}
-          bgColor={statusMap['planned'].bgColor}
-          onClick={() => setModalStatus('planned')}
+          bgColor={plannedInfo.bgColor}
+          onClick={() => setModalStatus(severityCodes.planned)}
         />
         <StatusCountCardItems
           icon={
-            SuspendedIcon ? (
-              <SuspendedIcon
+            suspendedInfo.icon ? (
+              <suspendedInfo.icon
                 size={16}
-                className={statusMap['suspended'].iconColor}
+                className={suspendedInfo.iconColor}
               />
             ) : null
           }
-          statusType="suspended"
+          statusType={suspendedInfo.name}
           statusCount={statusCounts.suspended}
-          bgColor={statusMap['suspended'].bgColor}
-          onClick={() => setModalStatus('suspended')}
+          bgColor={suspendedInfo.bgColor}
+          onClick={() => setModalStatus(severityCodes.suspended)}
         />
       </div>
       {renderModal()}
