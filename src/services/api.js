@@ -1,78 +1,36 @@
 const BASE_URL = 'https://api.tfl.gov.uk';
 
-// fetch status for all lines
-async function fetchTubeStatus(mode = 'tube') {
-  const fullUrl = `${BASE_URL}/Line/Mode/${mode}/Status?detail=true`;
+// fetch tube line status from TfL API
+async function fetchTubeStatus() {
+  const fullUrl = `${BASE_URL}/Line/Mode/tube/Status?detail=true`;
   try {
     const response = await fetch(fullUrl);
-    const data = response.json();
-    console.log(data);
-    return data;
-  }
-  catch (error) {
-    console.log('error fetching status for all lines: ', error);
-    console.log ( wgw)
+    const rawApidata = await response.json();
+    return rawApidata;
+  } catch (error) {
+    console.error('error fetching data from TFL API:', error);
+    return [];
   }
 }
 
-// process data
-
-// get status severity by line
-
-function getStatusByLine(data) {
-  const lineStatus = data.map((line) => {
-    if (line.lineStatuses && line.lineStatuses.length > 0) {
-      return line.lineStatuses[0].reason;
-    }
-    return 'unknown';
+// parse raw API data into clean structure
+function parseLineData(rawApidata) {
+  const parsedData = rawApidata.map((line) => {
+    const status = line.lineStatuses?.[0] || {};
+    return {
+      id: line.id,
+      name: line.name,
+      severity: status.statusSeverity,
+      severityDescription: status.statusSeverityDescription,
+      reason: status.reason || null,
+    };
   });
-  return lineStatus;
+  return parsedData;
 }
 
-// get status description by line
-
-function getStatusDescriptions(data) {
-  const x = data.map((line) => line.lineStatuses[0].reason).filter(Boolean);
-  return x;
+// get only lines with alerts/disruptions
+function getAlerts(parsedData) {
+  return parsedData.filter((line) => line.reason && line.reason.trim() !== '');
 }
 
-// count disruptions
-
-function countStatusDisruptions(data) {
-  const statusCounts = {
-    goodService: 0,
-    minorDelays: 0,
-    severeDelays: 0,
-    partClosure: 0,
-    planned: 0,
-    suspended: 0,
-  };
-
-  data.forEach((line) => {
-    const statusDescription =
-      line.lineStatuses[0].statusSeverityDescription.toLowerCase();
-
-    if (statusDescription.includes('good service')) {
-      statusCounts.goodService++;
-    } else if (statusDescription.includes('minor delays')) {
-      statusCounts.minorDelays++;
-    } else if (statusDescription.includes('severe delays')) {
-      statusCounts.severeDelays++;
-    } else if (statusDescription.includes('part closure')) {
-      statusCounts.partClosure++;
-    } else if (statusDescription.includes('planned')) {
-      statusCounts.planned++;
-    } else if (statusDescription.includes('suspended')) {
-      statusCounts.suspended++;
-    }
-  });
-  console.log('disruption counts: ', statusCounts);
-  return statusCounts;
-}
-
-export {
-  fetchTubeStatus,
-  countStatusDisruptions,
-  getStatusByLine,
-  getStatusDescriptions,
-};
+export { fetchTubeStatus, parseLineData, getAlerts };
