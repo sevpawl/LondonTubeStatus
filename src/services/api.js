@@ -1,3 +1,5 @@
+import { getLineColor } from '../utils/constants';
+
 const BASE_URL = 'https://api.tfl.gov.uk';
 
 // fetch tube line status from TfL API
@@ -17,12 +19,14 @@ async function fetchTubeStatus() {
 function parseLineData(rawApidata) {
   const parsedData = rawApidata.map((line) => {
     const status = line.lineStatuses?.[0] || {};
+
     return {
       id: line.id,
       name: line.name,
       severity: status.statusSeverity,
       severityDescription: status.statusSeverityDescription,
       reason: status.reason || null,
+      color: getLineColor(line.id),
     };
   });
   return parsedData;
