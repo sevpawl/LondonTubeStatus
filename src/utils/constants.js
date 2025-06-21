@@ -20,22 +20,25 @@ const statusColors = {
   suspended: 'bg-black',
 };
 
-// line colors
+// tube lines configuration (excluding elizabeth and overground - different API endpoints)
+const tubeLines = [
+  { id: 'bakerloo', name: 'bakerloo', color: '#b44a0b' },
+  { id: 'central', name: 'central', color: '#e02b24' },
+  { id: 'circle', name: 'circle', color: '#ffcc00' },
+  { id: 'district', name: 'district', color: '#008039' },
+  { id: 'hammersmith-city', name: 'hammersmith & city', color: '#d79caf' },
+  { id: 'jubilee', name: 'jubilee', color: '#9ea7aa' },
+  { id: 'metropolitan', name: 'metropolitan', color: '#a10060' },
+  { id: 'northern', name: 'northern', color: '#1a1a1a' },
+  { id: 'piccadilly', name: 'piccadilly', color: '#003b8f' },
+  { id: 'victoria', name: 'victoria', color: '#00a3e0' },
+  { id: 'waterloo-city', name: 'waterloo & city', color: '#99d1bf' },
+];
 
-const lineColors = {
-  bakerloo: 'bg-[#b44a0b]',
-  central: 'bg-[#e02b24]',
-  circle: 'bg-[#ffcc00]',
-  district: 'bg-[#008039]',
-  elizabeth: 'bg-[#7055a6]',
-  hammersmithCity: 'bg-[#d79caf]',
-  jubilee: 'bg-[#9ea7aa]',
-  metropolitan: 'bg-[#a10060]',
-  northern: 'bg-[#1a1a1a]',
-  overground: 'bg-[#f17a10]',
-  piccadilly: 'bg-[#003b8f]',
-  victoria: 'bg-[#00a3e0]',
-  waterlooCity: 'bg-[#99d1bf]',
+// helper to get line color by id
+const getLineColor = (lineId) => {
+  const line = tubeLines.find((l) => l.id === lineId);
+  return line ? line.color : '#808080'; // fallback to gray
 };
 
 // status map keyed by TfL API severity codes (0-20)
@@ -120,7 +123,7 @@ const statusMap = {
     iconColor: 'text-blue-600',
   },
   13: {
-  name: 'no step free access',
+    name: 'no step free access',
     bgColor: 'bg-gray-300',
     icon: Ban,
     iconColor: 'text-gray-700',
@@ -169,4 +172,4 @@ const statusMap = {
   },
 };
 
-export { statusColors, lineColors, statusMap };
+export { statusColors, statusMap, tubeLines, getLineColor };
