@@ -28,29 +28,25 @@ const StatsCard = ({ linesData = [] }) => {
   };
 
   linesData.forEach((line) => {
-    const severityCode = line.lineStatuses?.[0]?.statusSeverity;
+    const severityCode = line.severity;
     if (severityCode === 10) statusCounts.goodService++;
     else if (severityCode === 9) statusCounts.minorDelays++;
     else if (severityCode === 6) statusCounts.severeDelays++;
-    else if (severityCode === 5 || severityCode === 11) statusCounts.partClosure++;
+    else if (severityCode === 5 || severityCode === 11)
+      statusCounts.partClosure++;
     else if (severityCode === 4) statusCounts.planned++;
     else if (severityCode === 2) statusCounts.suspended++;
   });
 
   // get lines for a severity code
   const getLinesForSeverity = (severityCode) =>
-    linesData.filter(
-      (line) =>
-        line.lineStatuses &&
-        line.lineStatuses[0] &&
-        line.lineStatuses[0].statusSeverity === severityCode,
-    );
+    linesData.filter((line) => line.severity === severityCode);
 
   // modal content
   const renderModal = () => {
     if (!modalStatus) return null;
     const statusInfo = statusMap[modalStatus] || {
-      name: 'Unknown',
+      name: 'unknown',
       bgColor: 'bg-gray-200',
       icon: null,
       iconColor: 'text-gray-600',
@@ -79,7 +75,7 @@ const StatsCard = ({ linesData = [] }) => {
           <div className="flex flex-col gap-2 w-full">
             {lines.length === 0 ? (
               <div className="text-gray-600 text-center">
-                No lines in this status.
+                no lines in this status.
               </div>
             ) : (
               lines.map((line) => (
@@ -89,11 +85,11 @@ const StatsCard = ({ linesData = [] }) => {
                 >
                   <div className="font-semibold text-gray-800">{line.name}</div>
                   <div className="text-xs text-gray-600">
-                    {line.lineStatuses[0].statusSeverityDescription}
+                    {line.severityDescription}
                   </div>
-                  {line.lineStatuses[0].reason && (
+                  {line.reason && (
                     <div className="text-xs text-gray-500 mt-1">
-                      {line.lineStatuses[0].reason}
+                      {line.reason}
                     </div>
                   )}
                 </div>
@@ -186,10 +182,7 @@ const StatsCard = ({ linesData = [] }) => {
         <StatusCountCardItems
           icon={
             plannedInfo.icon ? (
-              <plannedInfo.icon
-                size={16}
-                className={plannedInfo.iconColor}
-              />
+              <plannedInfo.icon size={16} className={plannedInfo.iconColor} />
             ) : null
           }
           statusType={plannedInfo.name}
