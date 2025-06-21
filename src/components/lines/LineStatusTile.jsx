@@ -1,15 +1,12 @@
 import '../../global.css';
 import LineStatusBadge from './LineStatusBadge';
 
-const LineStatusTile = ({ title, lineColor, lineData, isLoading }) => {
-  let status = 'unknown';
-  let statusSeverity = '';
-  let statusReason = '';
-
-  if (lineData && lineData.lineStatuses && lineData.lineStatuses.length > 0) {
-    status = lineData.lineStatuses[0].statusSeverityDescription;
-    statusSeverity = lineData.lineStatuses[0].statusSeverity;
-    statusReason = lineData.lineStatuses[0].reason;
+const LineStatusTile = ({ lineName, lineColor, lineData, isLoading }) => {
+  let reason = '';
+  let severity = '';
+  if (lineData) {
+    reason = lineData.reason; 
+    severity = lineData.severity;
   }
 
   return (
@@ -21,19 +18,14 @@ const LineStatusTile = ({ title, lineColor, lineData, isLoading }) => {
             style={{ backgroundColor: lineColor }}
           />
           <span className="text-gray-600 pl-4 font-extrabold text-sm md:text-base cursor-default flex-1 leading-tight">
-            {title}
+            {lineName}
           </span>
         </div>
         <div className="flex items-center">
-          <LineStatusBadge
-            status={status}
-            statusSeverity={statusSeverity}
-            statusReason={statusReason}
-            isLoading={isLoading}
-          >
+          <LineStatusBadge severity={severity} reason={reason} isLoading={isLoading}>
             {
               <a
-                href={`https://tfl.gov.uk/tube/route/${title.toLowerCase()}/`}
+                href={`https://tfl.gov.uk/tube/route/${lineName}/`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-600 text-xs hover:text-gray-800"
